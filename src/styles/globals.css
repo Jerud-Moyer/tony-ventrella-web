@@ -25,3 +25,13 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+@font-face {
+  font-family: 'elegant-typewriter';
+  src: url('/fonts/ELEGANT-TYPEWRITER-Regular.ttf');
+  font-display: swap;
+}
+
+.name-headline {
+  font-family: 'elegant-typewriter';
+} 
