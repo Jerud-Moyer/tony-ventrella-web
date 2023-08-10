@@ -30,3 +30,8 @@ declare module '@mui/material/InputLabel' {
     dark_green: true;
   }
 }
+declare module '@mui/material/Button' {
+  interface  ButtonPropsColorOverrides {
+    dark_green: true;
+  }
+}
