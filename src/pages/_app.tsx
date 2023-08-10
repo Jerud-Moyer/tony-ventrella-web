@@ -1,4 +1,4 @@
-import createEmotionCache from '../mui-config/createEmotionCache'
+import createEmotionCache from '../mui-config/createEmotionCache';
 import '@/styles/globals.css'
 import { CacheProvider, EmotionCache, ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app'
