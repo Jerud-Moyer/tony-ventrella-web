@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
+import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
 import React, { ChangeEvent, useState } from 'react'
 
 function ContactForm() {
@@ -30,6 +30,14 @@ function ContactForm() {
         console.log('wut')
     }
 
+  }
+
+  const handleSendEmail = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    alert( `when we set this up you will get an email from: ${firstName} ${lastName}
+    with their email: ${email} 
+    a subject from the dropdown list: ${subject} 
+    and of course a message: ${message}`)
   }
 
 
@@ -121,6 +129,15 @@ function ContactForm() {
             />
           </div>
         </div>
+      </div>
+      <div className='max-w-fit mx-auto'>
+        <Button
+          variant='outlined'
+          color='dark_green'
+          onClick={handleSendEmail}
+        >
+          send email
+        </Button>
       </div>
     </div>
   )

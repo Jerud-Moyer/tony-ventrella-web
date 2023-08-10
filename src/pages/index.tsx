@@ -25,7 +25,7 @@ export default function Home() {
           <div className='max-w-[40%] pt-20'>
             <p className='text-3xl text-eerie_black italic'>Some info here</p>
             <p className='text-eerie_black'>some words about Tony, maybe something about his speaking engagements or a nice message, could be anything really, but this is just filler for the time being</p>
-            <p className='text-2xl text-bold text-eerie_black'>{'<-- picture there could be any of the pictures or could be a slideshow of pictures of your choosing!'}</p>
+            <p className='text-2xl text-bold text-eerie_black'>{'<-- picture there could be any of the pictures (though I think this one looks great) or it could be a slideshow of pictures of your choosing!'}</p>
           </div>
         </div>
         <div className='flex justify-around mt-40'>
