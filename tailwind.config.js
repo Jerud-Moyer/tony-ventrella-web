@@ -30,6 +30,7 @@ module.exports = {
       },
       animation: {
         fade: 'fade .8s ease',
+        image_fade: 'fade 2s ease'
       }
     },
   },
