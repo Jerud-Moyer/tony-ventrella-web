@@ -12,11 +12,11 @@ const images = [
     caption: '1st radio job (WDJF, Westport, Conn.)'
   },
   {
-    title: 'KING-5-promo.jpeg',
+    title: 'King-5-promo.jpeg',
     caption: 'KING 5 promo'
   },
   {
-    title: 'KING-5-News-1982-1993.jpeg',
+    title: 'King-5-News-1982-1993.jpeg',
     caption: 'KING 5 News'
   },
   {
@@ -32,7 +32,7 @@ const images = [
     caption: 'NYC Marathon'
   },
   {
-    title: 'Sea-Fair-Hydros.jpeg',
+    title: 'Sea-fair-Hydros.jpeg',
     caption: 'Sea Fair hydros'
   },
   {
@@ -44,7 +44,7 @@ const images = [
     caption: 'Great Strides walk'
   },
   {
-    title: 'Camp-Goodtimes.jpeg',
+    title: 'Camp-goodtimes.jpeg',
     caption: 'Camp Goodtimes'
   },
   {
