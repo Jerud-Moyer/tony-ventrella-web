@@ -4,6 +4,8 @@ import Hero from '@/components/Hero'
 import Toolbar from '@/components/Toolbar'
 import Footer from '@/components/Footer'
 import ContactForm from '@/components/ContactForm'
+import SlideShow from '@/components/SlideShow'
+import careerImages from '../../data/career-images'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,31 +18,31 @@ export default function Home() {
       <Hero />
       <div className='pt-72'>
         <div className='flex justify-around'>
-          <Image
-            alt='main image'
-            src='/images/Head shot 2023.JPG'
-            width='400'
-            height='600'
-          />
-          <div className='max-w-[40%] pt-20'>
-            <p className='text-3xl text-eerie_black italic'>Some info here</p>
-            <p className='text-eerie_black'>some words about Tony, maybe something about his speaking engagements or a nice message, could be anything really, but this is just filler for the time being</p>
-            <p className='text-2xl text-bold text-eerie_black'>{'<-- picture there could be any of the pictures (though I think this one looks great) or it could be a slideshow of pictures of your choosing!'}</p>
+          <div className='pt-12'>
+            <Image
+              alt='main image'
+              src='/images/Head shot 2023.JPG'
+              width='500'
+              height='600'
+            />
+          </div>
+          <div className='max-w-[36%] pt-48'>
+            <p className='text-3xl text-eerie_black italic inline'>&quot;Tony is a talented speaker</p>
+            <p className='text-eerie_black text-2xl inline'>&nbsp; with the amazing ability to make his listeners feel engaged and involved.  He exudes an atmosphere of trust and caring.</p>
+            <p className='text-3xl text-eerie_black italic inline'>&quot;</p>
+            <p className='text-bold text-eerie_black text-right mt-3'>Sharon Mast</p>
           </div>
         </div>
-        <div className='flex justify-around mt-40'>
-          <div className='max-w-[40%] pt-20 '>
-            <p className='text-3xl text-eerie_black italic'>Maybe another section here</p>
-            <p className='text-eerie_black'>Talk about something else here, related to speaking or all the cool stuff you have done throught you career.</p>
+        <div className='flex justify-around'>
+          <div className='w-fit block mx-auto'>
+            <SlideShow
+              slideContent={careerImages}
+            />
           </div>
-          <Image
-            alt='main image'
-            src='/images/Lesley Stahl 60 Minutes.JPG'
-            width='400'
-            height='600'
-          />
         </div>
-        <ContactForm />
+        <div className='mt-52'>
+          <ContactForm />
+        </div>
       </div>
       <div className='h-64'></div>
       <Footer />
