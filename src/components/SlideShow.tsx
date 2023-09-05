@@ -18,7 +18,8 @@ interface Props {
 
 function SlideShow({ slideContent }: Props) {
   const [slideIndex, setSlideIndex] = useState<number>(0)
-  const [slideInterval, setSlideInterval] = useState<number>(4000)
+  const defaultInt = 7000
+  const [slideInterval, setSlideInterval] = useState<number>(defaultInt)
 
   useInterval(() => {
     if(slideIndex != null && slideIndex < slideContent.length -1) {
@@ -38,7 +39,7 @@ function SlideShow({ slideContent }: Props) {
       }
     })
     setTimeout(() => {
-      setSlideInterval(4000)
+      setSlideInterval(defaultInt)
     }, 500)
   }
   
@@ -52,7 +53,7 @@ function SlideShow({ slideContent }: Props) {
       }
     })
     setTimeout(() => {
-      setSlideInterval(4000)
+      setSlideInterval(defaultInt)
     }, 500)
   }
 
@@ -88,7 +89,7 @@ function SlideShow({ slideContent }: Props) {
     <div 
     key={`indicator-${idx}`}
     className={`
-      w-3 h-3 rounded-full border-2 border-eerie_black m-2
+      w-2 h-2 rounded-full border-2 border-eerie_black m-2
       ${idx === slideIndex ? 'bg-dark_green' : ''}
     `}
     >
@@ -96,7 +97,7 @@ function SlideShow({ slideContent }: Props) {
   ))
 
   return (
-    <div className='mt-56 relative h-[700px] flex flex-col items-center'>
+    <div className='relative h-[700px] flex flex-col items-center'>
       { slides }
       <div className='absolute top-[326px] left-[-75px]'>
         <IconButton  

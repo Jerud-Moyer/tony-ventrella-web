@@ -26,6 +26,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: 'elegant-typewriter';
   src: url('/fonts/ELEGANT-TYPEWRITER-Regular.ttf');

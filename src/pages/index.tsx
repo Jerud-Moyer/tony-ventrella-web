@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <main 
-      className="flex min-h-screen flex-col items-center justify-between p-24 relative bg-soft_white"
+      className="flex min-h-screen flex-col items-center justify-between p-24 relative bg-soft_white scroll-smooth"
     >
       <Toolbar />
       <Hero />
@@ -34,13 +34,13 @@ export default function Home() {
           </div>
         </div>
         <div className='flex justify-around'>
-          <div className='w-fit block mx-auto'>
+          <div className='w-fit block mx-auto mt-40'>
             <SlideShow
               slideContent={careerImages}
             />
           </div>
         </div>
-        <div className='mt-52'>
+        <div className='mt-52' id='contact'>
           <ContactForm />
         </div>
       </div>

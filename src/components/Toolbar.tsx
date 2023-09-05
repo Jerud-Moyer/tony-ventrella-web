@@ -10,15 +10,31 @@ function Toolbar() {
       >
         speaking
       </Link>
-      <a className='m-2 cursor-pointer'>podcast</a>
-      <a className='m-2 cursor-pointer'>books</a>
+      <Link 
+        className='m-2 cursor-pointer'
+        href='/podcast'
+      >
+        podcast
+      </Link>
+      <Link 
+        className='m-2 cursor-pointer'
+        href='/books'  
+      >
+        books
+      </Link>
       <Link 
         className='m-2 cursor-pointer'
         href='/career'  
       >
         career
       </Link>
-      <a className='m-2 cursor-pointer'>contact</a>
+      <Link 
+        className='m-2 cursor-pointer'
+        href='/#contact'
+        scroll={false}
+      >
+        contact
+      </Link>
     </div>
   )
 }
