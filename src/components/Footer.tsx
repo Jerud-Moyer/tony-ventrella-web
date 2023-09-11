@@ -3,8 +3,8 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='h-64 w-full p-10 absolute bottom-0 bg-dark_green'>
-      <div className='mt-10 block float-right'>
+    <div className='h-44 w-screen p-10  bg-dark_green'>
+      <div className='mt-2 block float-right'>
         <p className='pl-3 text-xl text-soft_white'>connect</p>
         <div className='row'>
           <a 
