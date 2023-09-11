@@ -10,7 +10,7 @@ type Props = {
 
 function SubPageLayout({ typeoutMessage, children }: Props) {
   return (
-    <div className='bg-soft_white h-screen border-2'>
+    <div className='bg-soft_white border-2'>
       <Toolbar />
       <div className='absolute top-20 w-full h-18 p-6 bg-eerie_black'>
         <TypeOut 
@@ -18,7 +18,7 @@ function SubPageLayout({ typeoutMessage, children }: Props) {
           text={typeoutMessage}
         />
       </div>
-      <div className='mt-52 p-20'>
+      <div className='mt-52 p-40'>
         { children }
       </div>
       <Footer />

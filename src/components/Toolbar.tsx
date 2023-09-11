@@ -14,6 +14,12 @@ function Toolbar() {
       </Link>
       <Link 
         className='m-2 cursor-pointer'
+        href='/blog'
+      >
+        column
+      </Link>
+      <Link 
+        className='m-2 cursor-pointer'
         href='/podcast'
       >
         podcast
