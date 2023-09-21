@@ -1,6 +1,7 @@
 import React from 'react'
 import SubPageLayout from '@/components/SubPageLayout'
 import { blogEntries } from '../../../data/blog-entries'
+import { Divider } from '@mui/material'
 
 function blog() { 
   const entries = blogEntries.map((entry, i) => {
@@ -22,6 +23,9 @@ function blog() {
       <p className='my-4'>{ date }</p>
       <div>
           { ...content }
+      </div>
+      <div className='my-12'>
+        <Divider />
       </div>
     </div>
     )
