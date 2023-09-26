@@ -218,6 +218,9 @@ function ContactForm() {
                 <MenuItem value='speaking'>
                   I&rsquo;m interested in booking you for a speaking event
                 </MenuItem>
+                <MenuItem value='podcast'>
+                  I&rsquo;m curious about the podcast
+                </MenuItem>
                 <MenuItem value='books'>
                   I&rsquo;d like to know more about your books
                 </MenuItem>
