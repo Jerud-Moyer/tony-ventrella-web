@@ -4,7 +4,7 @@ import { blogEntries } from '../../../data/blog-entries'
 import { Divider } from '@mui/material'
 
 function blog() { 
-  const entries = blogEntries.map((entry, i) => {
+  const entries = blogEntries.reverse().map((entry, i) => {
     const date = new Date(entry.createdAt).toLocaleDateString()
     const content = entry.content.map((line, i) => (
       <p 
