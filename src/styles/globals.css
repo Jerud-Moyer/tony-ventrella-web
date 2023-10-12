@@ -39,3 +39,8 @@ html {
 .name-headline {
   font-family: 'elegant-typewriter';
 } 
+
+.ql-container p {
+  /* make default text size for text editor a bit larger */
+  font-size: 15px;
+}

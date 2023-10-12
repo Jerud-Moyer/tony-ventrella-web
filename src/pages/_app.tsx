@@ -4,6 +4,8 @@ import { CacheProvider, EmotionCache, ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app'
 import theme from '@/mui-config/theme'
 import Head from 'next/head';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -18,9 +20,11 @@ export default function App({ Component, emotionCache = clientSideEmotionCache, 
       <Head>
       <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </LocalizationProvider>
     </CacheProvider>
   )
 }
