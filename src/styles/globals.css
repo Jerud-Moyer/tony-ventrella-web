@@ -40,6 +40,10 @@ html {
   font-family: 'elegant-typewriter';
 } 
 
+/*.column-body p {
+  margin: 10px 0;
+}*/
+
 .ql-container p {
   /* make default text size for text editor a bit larger */
   font-size: 15px;
