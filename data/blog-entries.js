@@ -48,5 +48,21 @@ export const blogEntries = [
       'All fans can do is be aware of the dates that matter. The big one is the beginning of the free agency period the day after the conclusion of the World Series. A player can start talks with a team then but cannot sign with a new team until five days later.',
       'Advice for Mariner fans, dream big, keep hope alive, be optimistic, at least until five days after the World Series. If Ohtani signs with the Dodgers, Padres or shakes up the world completely and becomes a Yankee or a Met then you can start complaining again.'
     ]
+  },
+  {
+    createdAt: 1697689286630,
+    title: '',
+    content: [
+      'I started collecting baseball and football cards in the early 1950s. In those days we didn\’t have shops that specialized in that. Instead my friends and I found a place called Herman’s Smoke Shop, a few miles from our neighborhood but thankfully on the way to his Dad\’s office.',
+      'So once a week, my friend Dave and I would get a ride with his Dad to the office in the next town and walk over to Herman\’s. To answer your question before you ask, yes there was a Herman and he worked at the store every day. I was never interested in smoking but I must admit, I loved the smell of cigar and pipe smoke that greeted the nostrils and found a place in my memory all these years later. My favorite pipe smoke was called Cherry Blend and years later, when I got my first job at a newspaper as a sports writer, I actually tried some in a pipe I bought at Herman\’s. It wasn\’t the same. Smoking it was much less fun and satisfying than smelling someone else\’s smoke while picking up a park or two of baseball cards at Herman\’s.',
+      'Oh, by the way Topps cards cost 10 cents a pack when I was in the 4 th grade and each pack came with a rectangular piece of bubble gum that could\’ve doubled as a roof shingle. Heck I could afford that, I has bringing down a dollar mowing the lawn at the Elliott\’s house in my neighborhood.',
+      'Herman’s had a pretty nice display on Topps cards in those days. Now keep in mind there weren\’t too many companies turning out baseball cards back them. Kids bought and collected them, not for their potential value, but to keep in a shoe box, trade with friends on in some cases, put them into the spokes on our bikes to make it sound a little like a motorcycle. Times were simple back them.',
+      'We did have our eyes out for the big games cards though and again, not for the money value of the card but for the coolness of owning a 1953 Willie Mays, Duke Snider or Mickey Mantle. At one point I had two Mickey\’s, one Willie and one Duke. I ended up trading one of my Mickey’s for a bunch of lesser known players.',
+      'After showing up at Herman\’s every week for about a month, the owner took us aside and tipped us off about getting the “really popular” cards without having to open the pack. He tipped us off that on the back of the “stars” cards there was a small star stamped in black. You had to look carefully to spot it. From that point forward the first thing Dave and I did every time we walked into Herman\’s was flip over the packs and check for the star.',
+      'They were rare, but if you did get one, your chances of getting a Mickey, Willie or the Duke were much better. Herman was a man if his word.',
+      'All these decades later, the sports cards business, which died in the 1970s, then came back strong in the mid 90s, is hotter than ever. The difference today is that it\’s mostly about money now. It\’s all about the rare rookie card hidden somewhere in a box of cards that may cost two or three hundred dollars. The sports collecting business has become a lottery, but then hasn\’t life itself?',
+      'Gotta go now. Need to dust off my 1953 Mickey Mantle and see if I can swap it for a new car.'
+    ],
+    imageUrl: 'https://i.imgur.com/kWqWmO1.jpg'
   }
 ]
