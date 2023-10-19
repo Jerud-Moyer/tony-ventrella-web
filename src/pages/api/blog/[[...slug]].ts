@@ -94,7 +94,6 @@ export default async function handler(
       break
 
     case 'add-new':
-      console.log('add-new called')
       const newEntry = req.body
       const postedPost = await prisma.post.create({data: newEntry})
       if(postedPost) data['post'] = postedPost

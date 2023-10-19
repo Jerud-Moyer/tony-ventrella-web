@@ -14,6 +14,27 @@ function TextEditor({handler, stringVal}: Props) {
     dynamic(() => import('react-quill'), {ssr: false})
   ), []) 
 
+  const formats = [
+    'header',
+    'font',
+    'size',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'indent',
+    'link',
+    'image',
+    'color'
+  ]
+
+  const modules = {
+    toolbar: [['bold', 'italic', 'list'], ['link', 'image']]
+  }
+
   // useEffect(() => {
   //   console.log(value)
   // }, [value])
@@ -24,6 +45,8 @@ function TextEditor({handler, stringVal}: Props) {
         theme='snow'
         value={stringVal}
         onChange={(e) => handler(e)}
+        modules={modules}
+        formats={formats}
       />
     </div>
   )
