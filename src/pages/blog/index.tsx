@@ -2,6 +2,7 @@ import React from 'react'
 import SubPageLayout from '@/components/SubPageLayout'
 import { blogEntries } from '../../../data/blog-entries'
 import { Divider } from '@mui/material'
+import Image from 'next/image'
 
 function blog() { 
   const entries = blogEntries.reverse().map((entry, i) => {
@@ -24,6 +25,16 @@ function blog() {
       <div>
           { ...content }
       </div>
+      {entry.imageUrl && 
+        <div className='mt-8'>
+          <Image
+            src={entry.imageUrl}
+            alt='the mick'
+            width={500}
+            height={500}
+          />
+        </div>
+      }
       <div className='my-12'>
         <Divider />
       </div>
