@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient, Prisma } from '@prisma/client'
+import { uploadToS3 } from '@/utils/s3/s3-service'
 
 type BlogEntry = {
   id: String,
@@ -14,7 +15,8 @@ type Data = {
   post?: BlogEntry,
   posts?: BlogEntry[],
   count?: number,
-  error?: string
+  error?: string,
+  url?: string
 }
 
 type Message = {
@@ -24,6 +26,14 @@ type Message = {
 const prisma = new PrismaClient()
 
 // requests are structured /api/blog/paginationSkip/id
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '50mb'
+    }
+  }
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -98,6 +108,15 @@ export default async function handler(
       const postedPost = await prisma.post.create({data: newEntry})
       if(postedPost) data['post'] = postedPost
       else data['error'] = 'there\'s been a problem saving this entry'
+      break
+
+    case 'upload-image':
+      const {
+        encodedImage,
+        date     
+      } = req.body
+      uploadToS3(Buffer.from(encodedImage, 'base64'), date)
+        .then(url => data['url'] = url)
       break
 
     default:

@@ -5,7 +5,7 @@ import { DatePicker } from '@mui/x-date-pickers'
 import React, { useState } from 'react'
 
 function Admin() {
-  const [date, setDate] = useState(null)
+  const [date, setDate] = useState<Date | null>(null)
   const [headline, setHeadline] = useState<string | null>(null)
   const [bodyText, setBodyText] = useState<string>('')
   const [published, setPublished] = useState<boolean>(false)
@@ -21,6 +21,10 @@ function Admin() {
     setBodyText(string)
   }
 
+  const handleDateChange = (date: Date | null) => {
+    if(date) setDate(date)
+  }
+ 
   const postColumn = () => {
     fetch('/api/blog/add-new', {
       method: 'POST',
@@ -40,7 +44,7 @@ function Admin() {
           <DatePicker 
             label='select a date'
             value={date}
-            onChange={(val) => setDate(val)}
+            onChange={handleDateChange}
           />
         </div>
         <div className='my-12'>
@@ -53,8 +57,9 @@ function Admin() {
         </div>
         <p className='text-eerie_black mb-4 pl-4'>enter column text below</p>
         <TextEditor 
-          handler={handleBodyText}
-          stringVal={bodyText}  
+          stateHandler={handleBodyText}
+          stringVal={bodyText}
+          date={date}  
         />
         <div className='my-12'>
           <FormControl>
