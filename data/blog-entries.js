@@ -64,5 +64,18 @@ export const blogEntries = [
       'Gotta go now. Need to dust off my 1953 Mickey Mantle and see if I can swap it for a new car.'
     ],
     imageUrl: 'https://i.imgur.com/kWqWmO1.jpg'
+  },
+  {
+    createdAt: 1698294604053,
+    title: '',
+    content: [
+      'For someone like me who grew up the 50s collecting baseball cards, playing two on two basketball with the three other kids in my neighborhood and running across my yard in the fall carrying a football while avoiding stepping on the leaves which I pretended were tackles, life was pretty simple.',
+      'We did have a Little League in my small New England home town and a recreational basketball program at the old elementary school gym which still have a creaky wood floor and metal back boards, but other than that, a kid was on his own.',
+      'We invented games, like wall ball and step ball, hit the bat and a most primitive version of “Home Run Derby, using a pitcher, a batter and two fielders. Then, suddenly, around 1955, it all changed for the better. In the small town of Shelton, a father and son were experimenting with a plastic baseball that would curve like a real ball but with half the effort. By punching holes in that plastic ball, one could make it curve in just about every direction.',
+      'After starting and scrapping many experimental balls, the Dad finally came up with the Wiffle Ball. It was a winner. As a lefty I quickly learned how to throw a pitch at the head of a left handed hitter and have it break over the plate. Heck, even when I hit the batter occasionally, that plastic ball didn\’t do much damage. Later I mastered a “screw ball,” which would break away from the right handed hitter, then came the rise ball, the sinker, the knuckle ball and a few others I can\’t remember.',
+      'We played two on two wiffle ball from dawn to dark every day of the summer and most afternoons in the fall. The Wiffleball became a part of my life and still is to this day. Would you believe I still have a Wiffleball bat and a bag of balls in my car, at all times.',
+      'As the years went on, we set up Wiffleball leagues complete with a pennant race and World Series and then in 1972, we really got creative. We played the first of several 24 hour Wiffleball marathons, using eight players on four, two man teams. The rules were simple, each team had a pitcher and an infielder/outfielder, we didn’t run bases, we set it up like a city game with boundary lines designating a single, double, triple and home run. If the fielder caught a grounder or fly ball clean, it was an out. Meanwhile the four guys playing had to be catchers or umpires, so one got to rest for 24 hours.',
+      'We had a blast, so much so that first year that we did it for two more years after that. All these years later, everyone who took part in those Wiffleball marathons still talks about it today. And the little company that invented the Wiffleball, is still in business today.'
+    ]
   }
 ]
