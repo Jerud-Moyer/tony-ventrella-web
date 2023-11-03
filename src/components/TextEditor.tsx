@@ -2,11 +2,16 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import 'react-quill/dist/quill.snow.css'
 import { requestUpload, uploadToS3 } from '@/utils/s3/s3-service'
+import { Quill } from 'react-quill'
 
 type Props = {
   stateHandler: (string: string) => void,
   stringVal: string,
   date: Date | null
+}
+
+interface RQPropsWithRef extends ReactQuillProps {
+
 }
 
 function TextEditor({
@@ -17,6 +22,8 @@ function TextEditor({
   const ReactQuill = useMemo(() => (
     dynamic(() => import('react-quill'), {ssr: false})
   ), []) 
+
+  const quill = useRef()
 
   const theDate = date || new Date()
 
@@ -50,6 +57,7 @@ function TextEditor({
   ) => {
     const { ops } = delta
     console.log('delta? => ', delta)
+    // const quill = new Quill('#quill-editor')
     if(ops && ops.length) {
       ops.forEach((op: any, i: number) => {
         if(op.insert && op.insert.image) {
@@ -61,7 +69,11 @@ function TextEditor({
             .then(res => res?.json())
             .then(url => {
               console.log('from S3 => ', url)
-              editor.insertEmbed(null, 'image', url)
+              if(quill.current) {
+                console.log('quill instance? => ', quill.current)
+                const methods = quill.current.getEditor()
+                methods.insertEmbed(0, 'image', url)
+              }
             })
           console.log(i, ' => ', op)
         }
@@ -79,11 +91,13 @@ function TextEditor({
   return (
     <div className='text-eerie_black'>
       <ReactQuill 
+        id='quill-editor'
         theme='snow'
         value={stringVal}
         onChange={handleChange}
         modules={modules}
         formats={formats}
+        forwardedRef={quill}
       />
     </div>
   )
