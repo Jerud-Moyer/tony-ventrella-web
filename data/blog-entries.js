@@ -77,5 +77,21 @@ export const blogEntries = [
       'As the years went on, we set up Wiffleball leagues complete with a pennant race and World Series and then in 1972, we really got creative. We played the first of several 24 hour Wiffleball marathons, using eight players on four, two man teams. The rules were simple, each team had a pitcher and an infielder/outfielder, we didn’t run bases, we set it up like a city game with boundary lines designating a single, double, triple and home run. If the fielder caught a grounder or fly ball clean, it was an out. Meanwhile the four guys playing had to be catchers or umpires, so one got to rest for 24 hours.',
       'We had a blast, so much so that first year that we did it for two more years after that. All these years later, everyone who took part in those Wiffleball marathons still talks about it today. And the little company that invented the Wiffleball, is still in business today.'
     ]
+  },
+  {
+    createdAt: 1698715025961,
+    title: '',
+    content: [
+      'Halloween turned out to be a frightening night for the Arizona Diamondbacks. Texas got a big lead early and held on to take a 3-1 lead in this best of seven series. Only six teams have cone back from a 3-1 deficit to win the whole thing. The last team to do it was the Chicago Cubs in 2016.',
+      'As far as the home field advantage, forget about it, as they say in New York. In the 2023 playoffs the Rangers have a ridiculous 10-0 record at the opponent\’s stadium.',
+      'I\’m not sure why but I\’m reminded of the 1960 series in which the Yankees faced the out manned Pittsburgh Pirates. When the Yankees won, they won big, scores like 10-0, 12-0 and 16-3, but the Pirates won the series in seven games. Their margin of victory was always close. They won 6-4, 3-2, 5-2 and 10-9.',
+      'I mention this particular series because it still bothers me to this day. I was a huge Yankee fan as a kid so when game seven at Forbes Field in Pittsburgh went to a seventh game, I was pretty nervous.', 
+      'I remember getting off the bus, running into the house and flipping on the black and white television to watch the end of the game.',
+      'The home team Pirates came to bat with the game tied 9-9 in the bottom of the ninth inning. The Yankees brought in reliever Ralph Terry to face Pirates second baseman Bill Mazeroski and the smallest guy in the game hit the biggest home run of his career, a line drive over the left field for a walk off 10-9 Pirates victory. The only time in baseball history a World Series ended with a walk off home run.',
+      'Nine years later the New York Mets, who had lost 102 games in their inaugural season just seven years earlier, somehow won the National League pennant and faced the powerful Baltimore Orioles in the World Series.',
+      'The Orioles won the first game and most experts and fan expected a Baltimore sweep. By then I had my own business, a barber shop and a 16” color television next to my barber chair.',
+      'After the Orioles took that one game lead, the Mets superior pitching with Tom Seaver, Jerry Koosman, Nolan Ryan and others along with lots of luck and some spectacular defense by Tommy Agee and Ron Swoboda, won the next four in a row to take the series. Making the whole outcome more of a surprise is the fact that the 1968 Mets, a year earlier finished 9 th in the National League with a record of 73-89-1. Now that\’s a comeback.',
+      'I might toss in the fact that the fledgling New York Jets, who came into the American Football League in 1960 as the New York Titans, won the WFL title in 1968, then upset the Baltimore Colts in Super Bowl lll , led by a young Joe Namath. It was a glorious time for New York sports teams with the Knicks of the NBA winning that title in 1970, by beating the Los Angeles Lakers.'
+    ]
   }
 ]
