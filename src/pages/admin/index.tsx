@@ -1,8 +1,8 @@
 import SubPageLayout from '@/components/SubPageLayout'
-import TextEditor from '@/components/TextEditor'
+import TextEditor from '@/components/TextEditor.jsx'
 import { Button, FormControl, FormControlLabel, FormLabel, Switch, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
-import React, { useState } from 'react'
+import React, { forwardRef, useRef, useState } from 'react'
 
 function Admin() {
   const [date, setDate] = useState<Date | null>(null)
@@ -59,7 +59,7 @@ function Admin() {
         <TextEditor 
           stateHandler={handleBodyText}
           stringVal={bodyText}
-          date={date}  
+          date={date}
         />
         <div className='my-12'>
           <FormControl>

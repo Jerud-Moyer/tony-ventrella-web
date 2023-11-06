@@ -115,8 +115,17 @@ export default async function handler(
         encodedImage,
         date     
       } = req.body
-      uploadToS3(Buffer.from(encodedImage, 'base64'), date)
-        .then(url => data['url'] = url)
+      // uploadToS3(Buffer.from(encodedImage, 'base64'), date)
+      //   .then(url => {
+      //     console.log('in switch staement => ', url)
+      //     data['url'] = url
+      //   })
+      const newUrl = await uploadToS3(
+        Buffer.from(encodedImage, 'base64'),
+        date
+      )
+      console.log('in switch statement => ', newUrl)
+      data['url'] = newUrl
       break
 
     default:
@@ -124,6 +133,7 @@ export default async function handler(
   }
 
   if(!data.error) {
+    console.log('no error? => ', data)
     res.status(200).json(data)
   } else {
     res.status(500).json(data)

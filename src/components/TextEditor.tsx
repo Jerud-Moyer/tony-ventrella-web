@@ -10,9 +10,7 @@ type Props = {
   date: Date | null
 }
 
-interface RQPropsWithRef extends ReactQuillProps {
 
-}
 
 function TextEditor({
   stateHandler, 
