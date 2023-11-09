@@ -12,10 +12,38 @@ const getUUID = () => {
   );
 };
 
+export const adjustUploadInsert = (
+  dataUrl: string, 
+  callback: (string: string) => void): void => {
+
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
+  const image = new Image
+  image.src = (dataUrl)  
+
+  image.onload = () => {
+    const adjustedWidth = image.width <= 600
+      ? image.width
+      : 600
+
+    const aspectRatio = image.width / image.height
+    const newHeight = adjustedWidth / aspectRatio
+    
+    canvas.width = adjustedWidth
+    canvas.height = newHeight
+
+    ctx?.drawImage(image, 0, 0, adjustedWidth, newHeight)
+
+    const resizedImage = canvas.toDataURL('image/jpeg')
+    
+    callback(resizedImage.split(',')[1])
+  }
+}
+
 export const requestUpload = async(
   encodedImage: string,
   date: Date
-) => {
+): Promise<JSON> => {
   const reqPack = JSON.stringify({
     encodedImage,
     date
@@ -28,13 +56,12 @@ export const requestUpload = async(
     }
   })
   if(res.ok) {
-    console.log('s3 response API page => ', res)
     const json = await res.json()
-    console.log('s3 res after .json => ', json)
     return json
   } else {
     console.log('more error stuff here? => ', res)
     console.error('there has been a problem with your upload')
+    return await res.json()
   }
 }
 

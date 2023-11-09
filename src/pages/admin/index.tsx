@@ -59,7 +59,6 @@ function Admin() {
         <TextEditor 
           stateHandler={handleBodyText}
           stringVal={bodyText}
-          date={date}
         />
         <div className='my-12'>
           <FormControl>
