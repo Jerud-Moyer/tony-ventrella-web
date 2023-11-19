@@ -3,24 +3,21 @@ import SubPageLayout from '@/components/SubPageLayout'
 import { blogEntries } from '../../../data/blog-entries'
 import { Divider } from '@mui/material'
 import BlogList from '@/components/BlogList'
-
-type Column = {
-  title: string | null,
-  createdAt: Date,
-  content: string 
-}
+import { Column } from '../../types';
 
 function Blog() { 
   const [columns, setColumns] = useState<Column[]>([])
   const [count, setCount] = useState<number>(0)
 
+  // const extApiUrl = process.env.EXTERNAL_API_URL as string
+
   useEffect(() => {
-    fetch('/api/blog/get-count-published')
-      .then(res => res.json())
-      .then(json => {
-        console.log('COUNT! => ', json.count)
-        setCount(json.count)
-      })
+    // fetch('/api/blog/get-count-published')
+    //   .then(res => res.json())
+    //   .then(json => {
+    //     console.log('COUNT! => ', json.count)
+    //     setCount(json.count)
+    //   })
 
     fetch('/api/blog/get-published/0')
       .then(res => res.json())
