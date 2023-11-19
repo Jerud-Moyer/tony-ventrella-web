@@ -93,5 +93,22 @@ export const blogEntries = [
       'After the Orioles took that one game lead, the Mets superior pitching with Tom Seaver, Jerry Koosman, Nolan Ryan and others along with lots of luck and some spectacular defense by Tommy Agee and Ron Swoboda, won the next four in a row to take the series. Making the whole outcome more of a surprise is the fact that the 1968 Mets, a year earlier finished 9 th in the National League with a record of 73-89-1. Now that\’s a comeback.',
       'I might toss in the fact that the fledgling New York Jets, who came into the American Football League in 1960 as the New York Titans, won the WFL title in 1968, then upset the Baltimore Colts in Super Bowl lll , led by a young Joe Namath. It was a glorious time for New York sports teams with the Knicks of the NBA winning that title in 1970, by beating the Los Angeles Lakers.'
     ]
+  },
+  {
+    createdAt: 1700418630090,
+    title: '',
+    content: [
+      'Is it me, or are there more injured starting quarterbacks in the NFL this season than ever before. Aaron Rodgers started the parade a few plays into his first games as Jet\’s quarterback. Since then he\’s been joined at some point by Kirk Cousins, DeShaun Watson, Anthony Richardson, Joe Burrow, Kyler Murray, Josh Allen, Daniel Jones, Derrick Carr, Taylor Heinicke and Mathew Stafford.',
+      'This is all happening at a time when the NFL has gone to great lengths to protect quarterbacks, or have they?',
+      'Now that I think about it, the league can do so much more, but because of money and my favorite anti human force greed, it will never happen.',
+      'There are two changes the league could make that would greatly decrease the number and frequency of QB injuries. First, get rid of Thursday night football. Second install real grass on all NFL fields.',
+      'I realize that neither of those will happen. Amazon pays a lot for those “Prime” games on Thursdays and installing and maintaining grass will cost millions.',
+      'That leaves us with only one other option. Flag football!! The NFL owners can provide flags for every starting, back up and practice squad QB in the league. How much can that cost?',
+      '',
+      'It\’s Thanksgiving week and I love it. According to the airline industry, 2023 will be as busy at airports and on the highway as 2019, the year before Covid turned us upside down. Be safe out there and patient too, get to your destination safely, always bring a gift and avoid talking politics.',
+      'Thanksgiving gives me the opportunity to tell my family how much I love and appreciate them. It\’s an opportunity to reflect on my good fortune to be raised by loving parents and be surrounded by so many hand waving, expressive, loud talking Italian relatives.',
+      'My gratitude list is a long one so here’s an edited version of the things for which I\’m grateful. Baseball, wiffleball, football, basketball, golf, soccer, hockey, boxing, running, Ken Burns films, books, musicals, comedy, “live” theatre, Duncan donuts, good pizza and elected officials who serve all the people, listen to those with whom they disagree, vote for or against bills based on research and not party politics or what the lobbyists have to say.',
+      'I\’m grateful for anyone who reads this column or any of my books or listens to my podcast. Happy Thanksgiving to all.'
+    ]
   }
 ]
