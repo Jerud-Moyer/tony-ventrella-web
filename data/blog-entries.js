@@ -110,5 +110,26 @@ export const blogEntries = [
       'My gratitude list is a long one so here’s an edited version of the things for which I\’m grateful. Baseball, wiffleball, football, basketball, golf, soccer, hockey, boxing, running, Ken Burns films, books, musicals, comedy, “live” theatre, Duncan donuts, good pizza and elected officials who serve all the people, listen to those with whom they disagree, vote for or against bills based on research and not party politics or what the lobbyists have to say.',
       'I\’m grateful for anyone who reads this column or any of my books or listens to my podcast. Happy Thanksgiving to all.'
     ]
+  },
+  {
+    createdAt: 1701065377541,
+    title: '',
+    content: [
+      'True confession time. I didn\’t watch the Apple Cup live on Saturday. Instead I spent the day helping my friend Dave, owner of Newcastle Fruit and Produce, sell Christmas trees and prepare for the annual tree lighting. I\’ve always gotten a kick out of selling Christmas trees ever since my Dad and brother Phil decided to add a little spirit to Ventrella\’s Barber shop by selling trees in the parking lot.',
+      'All these years later, I still get a kick out of helping people pick out a tree, and that includes the lady who last year looked at 14 different trees only to choose the first one after all. Hey, it\’s part of the fun.',
+      'Anyway, I recorded the game before leaving for the tree lot then around 10 minutes before kickoff decided to listen on the radio. For some reason it doesn\’t bother me to know the outcome of a game before I watch the replay.',
+      'I made sure to switch back and forth between the Husky and Cougar broadcasts so I could do my own comparison. That\’s what a life in the broadcasting business will do to a person. The broadcast of the game was just as important as the outcome, after all I covered both the Huskies and Cougars for nearly 30 years and always remained neutral even though my wife was a Husky and my granddaughter is currently at the UW.',
+      'After working outside in fairly cold November weather for Seattle, I welcomed the hot shower I took just before settling in to watch the replay of the game around 9 o\’clock Saturday night. Nothing beats a hot shower, a warm spot in front of the fireplace, a snack and a football game on TV, especially a classic like the 115th Apple Cup turned out to be.',
+      'I was proud of the effort by the Cougars, who were coming off a five game losing streak and playing at Husky stadium. I was also proud of the Huskies effort as the game rocked back and forth promising a dramatic outcome.',
+      'I was proud of the effort by the Cougars, who were coming off a five game losing streak and playing at Husky stadium. I was also proud of the Huskies effort as the game rocked back and forth promising a dramatic outcome. I sat and watched the replay in real time, no fair fast forwarding.',
+      'So around midnight Saturday with the Huskies deep in their own territory, well out of field goal range, I finally got my treat.',
+      'Dillon Johnson was stuffed for no gain on a third and one on the Huskies 29 yard line and thoughts of overtime danced in my head. What a treat. The Cougars would field the punt deep in their own territory and actually have a chance for the biggest upset of the season. Could they actually beat the favored Huskies, finish with six wins and go to a bowl game, leaving the Huskies status as a contender for a national title in doubt? No. I guess not.',
+      'The Huskies did have the punt team on the field briefly but just long enough to try and draw the Cougars defense off sides and get that first down.',
+      'Suddenly the punt team was replaced by the offense with Michael Penix at quarterback flanked on his left by Rome Odunze and oh the right by Johnson.',
+      'Would they send Johnson to get that yard or fake and throw a short pass to Odunze, or would Penix run a keeper straight up the middle. How about none of those. “I figured it was worth a chance” said UW coach Kalen DeBoer a few minutes after Penix faked a handoff to Johnson then flipped it to his favorite target Odunze who needed one yard and got 23 instead.',
+      'That led to the winning field goal by Gross and a thrilling finish for the 115th Apple Cup. Huskies win 24-21 to finish the regular season at 12-0.',
+      'Even though I knew what the outcome of the game was before I saw the video, it didn\’t matter. I\’ll probably never delete this particular Apple Cup. After all it is the last official Pac-12 Apple Cup meeting between these two storied programs.',
+      'No time to fret over the greed and mismanagement that led to the demise of the Pac-12, we’ve got the rest of our lives to do that. I choose to celebrate one fantastic football game, between two arch rivals and for now leave it at that.'
+    ]
   }
 ]
