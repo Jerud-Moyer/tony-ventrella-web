@@ -1,4 +1,8 @@
-import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { 
+  useCallback, 
+  useMemo, 
+  useRef 
+} from 'react'
 import dynamic from 'next/dynamic'
 import 'react-quill/dist/quill.snow.css'
 import { requestUpload, adjustUploadInsert } from '@/utils/s3/s3-service'
@@ -18,10 +22,7 @@ function TextEditor ({
 
   const quill = useRef(null)
 
-  // const theDate = useMemo(() => (date || new Date()), [date])
-
   const handleUpload = useCallback(() => {
-    // const theDate = date || new Date()
     const theDate = new Date()
     const input = document.createElement('input')
     input.setAttribute('type', 'file')
@@ -86,7 +87,6 @@ function TextEditor ({
   
   return (
     <div className='text-eerie_black'>
-      <p className='text-4xl'>Hello!</p>
       <QuillWrapper
         id='quill-editor'
         theme='snow'
@@ -96,15 +96,6 @@ function TextEditor ({
         formats={formats}
         forwardedRef={quill}
       />
-      {/* <ReactQuill 
-        id='quill-editor'
-        theme='snow'
-        value={stringVal}
-        onChange={handleChange}
-        modules={modules}
-        formats={formats}
-        ref={quill}
-      /> */}
     </div>
   )
 }

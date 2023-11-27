@@ -26,7 +26,7 @@ function Blog() {
         setColumns(json.posts.map((entry: any) => (
           {
             title: entry.title,
-            createdAt: entry.createdAt,
+            created_at: entry.created_at,
             content: entry.content
           }
         )))

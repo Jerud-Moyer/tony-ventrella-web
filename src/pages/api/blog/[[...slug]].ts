@@ -47,10 +47,13 @@ export default async function handler(
     ? Number(req.query.slug[1])
     : 0
 
+  const id = (req.query.slug && req.query.slug[2])
+    ? req.query.slug[2]
+    : null
+
   const data: Data = {}
   const extApiUrl = process.env.EXTERNAL_API_URL as string
 
-  console.log('reqType => ', reqType)
   switch(reqType) {
     case 'get-count-published':
       const count = await prisma.post.count({
@@ -77,23 +80,30 @@ export default async function handler(
       else data['error'] = 'there was a problem getting the posts'
       break
 
+    case 'get-by-id':
+      const singleEntryRes = await fetch(`${extApiUrl}/columns/${id}`)
+      const entry  = await singleEntryRes.json()
+
+      if(entry) {
+        data['posts'] = entry
+      } else {
+        data['error'] = 'there was a problem getting this entry.'
+      }
+      break
+
     case 'get-all':
       // const entries = await prisma.post.findMany({
       //   skip: paginationSkip,
       //   take: 25
       // })
       const res = await fetch(`${extApiUrl}/columns?page=${paginationSkip}&limit=25`)
-      console.log('res? => ', res)
       const entries = await res.json()
-      console.log('entries? => ', entries)
       if(entries) data['posts'] = entries.results
       else data['error'] = 'there was a problem getting the posts'
       break
 
     case 'add-new':
       const newEntry = req.body
-      console.log('add-new => ', newEntry)
-      // const postedPost = await prisma.post.create({data: newEntry})
       const post = await fetch(`${extApiUrl}/columns`, {
         method: 'POST',
         headers: {
@@ -104,6 +114,34 @@ export default async function handler(
       const postedPost = await post.json()
       if(postedPost) data['post'] = postedPost
       else data['error'] = 'there\'s been a problem saving this entry'
+      break
+
+    case 'update-entry':
+      const entryForUpdate = req.body
+      console.log('next server => ', entryForUpdate)
+      const updatedEntryRes = await fetch(`${extApiUrl}/columns`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(entryForUpdate)
+      })
+      const updatedEntry = await updatedEntryRes.json()
+      if(updatedEntry) data['post'] = updatedEntry
+      else data['error'] = 'there was a problem updating your post'
+      break
+
+    case 'delete-entry':
+      console.log('next api => ', id)
+      const deletedEntryRes = await fetch(`${extApiUrl}/columns/${id}`, {
+        method: 'DELETE'
+      })
+      if(deletedEntryRes) {
+        const deletedEntry = await deletedEntryRes.json()
+        data['posts'] = deletedEntry 
+      } else {
+        data['error'] = 'there was a problem deleting your post'
+      }
       break
 
     case 'upload-image':

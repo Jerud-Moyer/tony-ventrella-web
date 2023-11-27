@@ -1,21 +1,26 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import TextEditor from '@/components/TextEditor.jsx'
 import EditColumn from '@/components/admin/EditColumn'
+import { Column } from '@/types'
+import { getColumnById, postColumn, updateColumn } from '@/utils/api/api-utils'
 import { Box, Button, FormControl, FormControlLabel, FormLabel, Switch, Tab, Tabs, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
-import React, { forwardRef, useRef, useState } from 'react'
+import dayjs from 'dayjs'
+import React, { useState } from 'react'
 
 function Admin() {
-  const [date, setDate] = useState<Date | null>(null)
-  const [headline, setHeadline] = useState<string | null>(null)
+  const [date, setDate] = useState<any>(null)
+  const [headline, setHeadline] = useState<string>('')
   const [bodyText, setBodyText] = useState<string>('')
   const [published, setPublished] = useState<boolean>(false)
   const [adminView, setAdminView] = useState<string>('a')
+  const [idToUpdate, setIdToUpdate] = useState<number | null>(null)
 
-  const newEntry = {
+  const newEntry: Column = {
+    id: idToUpdate,
     title: headline,
     content: bodyText,
-    createdAt: date || '',
+    created_at: date || '',
     published
   }
 
@@ -23,6 +28,14 @@ function Admin() {
     e: React.SyntheticEvent, val: string
   ) => {
     setAdminView(val)
+  }
+
+  const clearForm = (): void => {
+    setHeadline('')
+    setDate(null)
+    setPublished(false)
+    setBodyText('')
+    setIdToUpdate(null)
   }
 
   const handleBodyText = (string: string): void => {
@@ -34,23 +47,47 @@ function Admin() {
       console.log('date here => ', date)
       setDate(date)}
   }
+
+  const handleInitEdit = (id: number | null): void => {
+    if(id) {
+      setAdminView('a')
+      getColumnById(id)
+        .then(col => {
+          setHeadline(col.title)
+          setDate(() => (dayjs(new Date(col.created_at))))
+          setPublished(col.published)
+          setBodyText(col.content)
+          setIdToUpdate(id)
+        })
+    }
+  }
+
+  const handleCancelEdit = (): void => {
+    clearForm()
+  }
+
+  const handleUpdateColumn = (): void => {
+    updateColumn(newEntry)
+  }
  
-  const postColumn = () => {
+  const handlePostColumn = () => {
     if(!date) {
-      newEntry.createdAt = new Date().toISOString()
+      newEntry.created_at = new Date().toISOString()
       console.log('entry after insert date => ', newEntry)
     } else {
-      newEntry.createdAt.toLocaleString()
+      newEntry.created_at.toLocaleString()
     }
-    fetch('/api/blog/add-new', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newEntry)
-    })
-      .then(res => res.json())
-      .then(json => console.log('json => ', json))
+
+    postColumn(newEntry)
+    // fetch('/api/blog/add-new', {
+    //   method: 'POST',
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(newEntry)
+    // })
+    //   .then(res => res.json())
+    //   .then(json => console.log('json => ', json))
   }
 
   return (
@@ -62,7 +99,7 @@ function Admin() {
             onChange={handleAdminViewChange}  
           >
             <Tab 
-              label='add a column'
+              label={!idToUpdate ? 'add a column' : 'edit'}
               value='a'  
             />
             <Tab
@@ -89,7 +126,9 @@ function Admin() {
                 fullWidth
               />
             </div>
-            <p className='text-eerie_black mb-4 pl-4'>enter column text below</p>
+            <FormLabel>
+              enter column text below
+            </FormLabel>
             <TextEditor 
               stateHandler={handleBodyText}
               stringVal={bodyText}
@@ -104,25 +143,49 @@ function Admin() {
                     <Switch
                       checked={published}
                       onChange={() => setPublished(!published)}
-                      />
-                    }
+                    />
+                  }
                   label={published ? 'yes' : 'no'}
                 />
               </FormControl>
             </div>
             <div className='my-4'>
-              <Button
-                variant='outlined'
-                onClick={postColumn}
-              >
-                Submit New Column
-              </Button>
+              {idToUpdate
+              ?
+              <>
+                <div className='flex'>
+                  <div className='mr-4'>
+                    <Button
+                      variant='outlined'
+                      onClick={handleUpdateColumn}
+                    >
+                      Submit Edited Column
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      variant='outlined'
+                      onClick={handleCancelEdit}
+                    >
+                      Cancel Edit Column
+                    </Button>
+                  </div>
+                </div>
+              </>
+              :
+                <Button
+                  variant='outlined'
+                  onClick={handlePostColumn}
+                >
+                  Submit New Column
+                </Button>
+              }
             </div>
           </Box>
         }  
         {adminView == 'b' && 
           <Box>
-            <EditColumn />
+            <EditColumn handleInitEdit={handleInitEdit} />
           </Box>
         }
       </SubPageLayout>
