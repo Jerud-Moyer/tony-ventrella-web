@@ -1,12 +1,13 @@
+import Notification from '@/components/Notification'
 import SubPageLayout from '@/components/SubPageLayout'
 import TextEditor from '@/components/TextEditor.jsx'
 import EditColumn from '@/components/admin/EditColumn'
 import { Column } from '@/types'
-import { getColumnById, postColumn, updateColumn } from '@/utils/api/api-utils'
-import { Box, Button, FormControl, FormControlLabel, FormLabel, Switch, Tab, Tabs, TextField } from '@mui/material'
+import { deleteColumn, getColumnById, getCountPublished, postColumn, updateColumn } from '@/utils/api/column-utils'
+import { Box, Button, FormControl, FormControlLabel, FormLabel, LinearProgress, Switch, Tab, Tabs, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Admin() {
   const [date, setDate] = useState<any>(null)
@@ -15,6 +16,9 @@ function Admin() {
   const [published, setPublished] = useState<boolean>(false)
   const [adminView, setAdminView] = useState<string>('a')
   const [idToUpdate, setIdToUpdate] = useState<number | null>(null)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [notification, setNotification] = useState<string>('')
+  const [messageType, setMessageType] = useState<'warning' | 'success'>('success')
 
   const newEntry: Column = {
     id: idToUpdate,
@@ -22,12 +26,6 @@ function Admin() {
     content: bodyText,
     created_at: date || '',
     published
-  }
-
-  const handleAdminViewChange = (
-    e: React.SyntheticEvent, val: string
-  ) => {
-    setAdminView(val)
   }
 
   const clearForm = (): void => {
@@ -38,14 +36,24 @@ function Admin() {
     setIdToUpdate(null)
   }
 
+  const handleAdminViewChange = (
+    e: React.SyntheticEvent, val: string
+  ) => {
+    setAdminView(val)
+    clearForm()
+  }
+
+  const notify = (severity: 'warning' | 'success', message: string): void => {
+    setMessageType(severity)
+    setNotification(message)
+  }
+
   const handleBodyText = (string: string): void => {
     setBodyText(string)
   }
 
   const handleDateChange = (date: Date | null) => {
-    if(date) {
-      console.log('date here => ', date)
-      setDate(date)}
+    if(date) setDate(date)
   }
 
   const handleInitEdit = (id: number | null): void => {
@@ -67,27 +75,50 @@ function Admin() {
   }
 
   const handleUpdateColumn = (): void => {
+    setLoading(true)
     updateColumn(newEntry)
+      .then(res => {
+        if(res.error) {
+          notify('warning', res.error)
+        } else {
+          notify('success', 'Column successfully updated!')
+          clearForm()
+        }
+      })
+      .finally(() => setLoading(false))
+  }
+
+  const handleDeleteColumn = (id: number): void => {
+    setLoading(true)
+    deleteColumn(id)
+      .then(res => {
+        if(res.error) {
+          notify('warning', res.error)
+        } else {
+          notify('success', 'Column successfully deleted')
+        }
+      })
+      .finally(() => setLoading(false))
   }
  
   const handlePostColumn = () => {
+    setLoading(true)
     if(!date) {
       newEntry.created_at = new Date().toISOString()
-      console.log('entry after insert date => ', newEntry)
     } else {
       newEntry.created_at.toLocaleString()
     }
 
     postColumn(newEntry)
-    // fetch('/api/blog/add-new', {
-    //   method: 'POST',
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(newEntry)
-    // })
-    //   .then(res => res.json())
-    //   .then(json => console.log('json => ', json))
+      .then(res => {
+        if(res.error) {
+          notify('warning', res.error)
+        } else {
+          notify('success', 'New column posted successfully!')
+          clearForm()
+        }
+      })
+      .finally(() => setLoading(false))
   }
 
   return (
@@ -109,7 +140,7 @@ function Admin() {
           </Tabs>
         </div>
 
-        {adminView === 'a' &&
+        {adminView === 'a' && !loading &&
           <Box>
             <div className='my-12'>
               <DatePicker 
@@ -136,7 +167,7 @@ function Admin() {
             <div className='my-12'>
               <FormControl>
                 <FormLabel>
-                  Publish this column now?
+                  publish this column now?
                 </FormLabel>
                 <FormControlLabel
                   control={
@@ -185,10 +216,24 @@ function Admin() {
         }  
         {adminView == 'b' && 
           <Box>
-            <EditColumn handleInitEdit={handleInitEdit} />
+            <EditColumn 
+              handleInitEdit={handleInitEdit} 
+              handleDeleteColumn={handleDeleteColumn}              
+            />
           </Box>
         }
       </SubPageLayout>
+      <Notification 
+        severity={messageType}
+        message={notification}
+      />
+      {loading &&
+        <div className='absolute top-0 left-0 min-h-full min-w-full z-[100] backdrop-blur-md'>
+          <div className='block mt-[50vh] ml-[25%] w-[50%] max-h-fit'>
+            <LinearProgress />
+          </div>
+        </div>
+      }
     </div>
   )
 }

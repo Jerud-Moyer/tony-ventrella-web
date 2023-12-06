@@ -1,81 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import SubPageLayout from '@/components/SubPageLayout'
-import { blogEntries } from '../../../data/blog-entries'
-import { Divider } from '@mui/material'
+import { LinearProgress, Pagination } from '@mui/material'
 import BlogList from '@/components/BlogList'
 import { Column } from '../../types';
+import { getCountPublished, getPublishedColumns } from '@/utils/api/column-utils'
 
 function Blog() { 
   const [columns, setColumns] = useState<Column[]>([])
-  const [count, setCount] = useState<number>(0)
+  const [pageCount, setPageCount] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
 
-  // const extApiUrl = process.env.EXTERNAL_API_URL as string
+  const handleGetColumns = (page: number): void => {
+    setLoading(true)
+    getPublishedColumns(page)
+      .then(cols => {setColumns(cols)})
+      .finally(() => setLoading(false))
+  }
+
+  const handlePaginationChange = (event: React.ChangeEvent<unknown>, page: number): void => {
+    handleGetColumns(page)
+  }
 
   useEffect(() => {
-    // fetch('/api/blog/get-count-published')
-    //   .then(res => res.json())
-    //   .then(json => {
-    //     console.log('COUNT! => ', json.count)
-    //     setCount(json.count)
-    //   })
-
-    fetch('/api/blog/get-published/0')
-      .then(res => res.json())
-      .then(json => {
-        console.log('columns? => ', json)
-        setColumns(json.posts.map((entry: any) => (
-          {
-            title: entry.title,
-            created_at: entry.created_at,
-            content: entry.content
-          }
-        )))
-      })
-    console.log('is it just the hook?')
+    getCountPublished()
+      .then(count => setPageCount(Math.ceil(count.count / 10)))
+    
+    handleGetColumns(1)
   }, [])
-
-
-  // new above - old below
-  const entries = blogEntries.reverse().map((entry, i) => {
-    const date = new Date(entry.createdAt).toLocaleDateString()
-    const content = entry.content.map((line, i) => (
-      <p 
-        key={`line-${i}`}
-        className='mb-2'  
-      >
-        {line}
-      </p>
-    ))
-    return (
-    <div
-      key={`${entry.title}-${i}`}
-      className='text-eerie_black'  
-    >
-      <p className='text-3xl'>{ entry.title }</p>
-      <p className='my-4'>{ date }</p>
-      <div>
-          { ...content }
-      </div>
-      <div className='my-12'>
-        <Divider />
-      </div>
-    </div>
-    )
-  })
-
 
 
   return (
     <div>
       <SubPageLayout typeoutMessage='Sport Tones'>
         <div className=''>
-          <div className='border-2 border-eerie_black'>
+          <div className=''>
             {columns.length && 
               <BlogList columns={columns}/>
             }
           </div>
-          {...entries}
         </div>
+        {loading &&
+          <LinearProgress />
+        }
+        {pageCount &&
+          <div className='flex justify-center'>
+            <Pagination
+              shape='rounded'
+              count={pageCount}
+              onChange={handlePaginationChange}
+            />
+          </div>
+        }
       </SubPageLayout>
     </div>
   )

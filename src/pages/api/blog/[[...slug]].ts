@@ -56,33 +56,29 @@ export default async function handler(
 
   switch(reqType) {
     case 'get-count-published':
-      const count = await prisma.post.count({
-        where: {
-          published: true
-        }
-      })
-      if(count) data['count'] = count
+      const publishedCountRes = await fetch(`${extApiUrl}/columns/count-published`)
+      const publishedCount =  await publishedCountRes.json()
+      if(publishedCount) data['count'] = publishedCount
       else data['error'] = 'there\'s been a problem getting the count'
+      break
+
+    case 'get-count':
+      const countRes = await fetch(`${extApiUrl}/columns/count`)
+      const count = await countRes.json()
+      if(count) data['count'] = count
+      else data['error'] = 'there was a problem getting the count'
       break
     
     case 'get-published':
-      const publishedEntries = await prisma.post.findMany({
-        skip: paginationSkip,
-        take: 10,
-        where: {
-          published: true
-        },
-        orderBy: {
-          createdAt: 'asc'
-        }
-      })
-      if(publishedEntries) data['posts'] = publishedEntries
+      const publishedRes = await fetch(`${extApiUrl}/columns/published?page=${paginationSkip}&limit=10`)
+      const publishedEntries = await publishedRes.json()
+      if(publishedEntries) data['posts'] = publishedEntries.results
       else data['error'] = 'there was a problem getting the posts'
       break
 
     case 'get-by-id':
       const singleEntryRes = await fetch(`${extApiUrl}/columns/${id}`)
-      const entry  = await singleEntryRes.json()
+      const entry = await singleEntryRes.json()
 
       if(entry) {
         data['posts'] = entry
@@ -92,11 +88,7 @@ export default async function handler(
       break
 
     case 'get-all':
-      // const entries = await prisma.post.findMany({
-      //   skip: paginationSkip,
-      //   take: 25
-      // })
-      const res = await fetch(`${extApiUrl}/columns?page=${paginationSkip}&limit=25`)
+      const res = await fetch(`${extApiUrl}/columns?page=${paginationSkip}&limit=10`)
       const entries = await res.json()
       if(entries) data['posts'] = entries.results
       else data['error'] = 'there was a problem getting the posts'
@@ -118,7 +110,6 @@ export default async function handler(
 
     case 'update-entry':
       const entryForUpdate = req.body
-      console.log('next server => ', entryForUpdate)
       const updatedEntryRes = await fetch(`${extApiUrl}/columns`, {
         method: 'PUT',
         headers: {
@@ -132,7 +123,6 @@ export default async function handler(
       break
 
     case 'delete-entry':
-      console.log('next api => ', id)
       const deletedEntryRes = await fetch(`${extApiUrl}/columns/${id}`, {
         method: 'DELETE'
       })

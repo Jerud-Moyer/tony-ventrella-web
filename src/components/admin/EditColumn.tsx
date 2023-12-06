@@ -1,25 +1,32 @@
 import { Column } from '@/types'
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import Accordian from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordianDetails from '@mui/material/AccordionDetails'
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp'
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
-import { deleteColumn } from '@/utils/api/api-utils'
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, LinearProgress, Pagination } from '@mui/material'
+import { deleteColumn, getColumns, getCount, getCountPublished } from '@/utils/api/column-utils'
 
 type Props = {
-  handleInitEdit: (id: number | null) => void
+  handleInitEdit: (id: number | null) => void,
+  handleDeleteColumn: (id: number) => void
 }
 
-function EditColumn({ handleInitEdit } : Props) {
+function EditColumn({ 
+  handleInitEdit,
+  handleDeleteColumn
+} : Props) {
   const [columns, setColumns] = useState<Column[] | null>(null)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false)
   const [idForDelete, setIdForDelete] = useState<number | null>(null)
+  const [pageCount, setPageCount] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
 
-  const handleDeleteColumn = (id: number | null): void => {
+  const handleConfirmDelete = (id: number | null) => {
+    setShowDeleteConfirm(false)
     if(id) {
-      deleteColumn(id)
-      setShowDeleteConfirm(false)
+      handleDeleteColumn(id)
+      handleGetColumns(1)
     }
   }
 
@@ -32,12 +39,21 @@ function EditColumn({ handleInitEdit } : Props) {
     setShowDeleteConfirm(false)
   }
 
+  const handleGetColumns = (page: number): void => {
+    setLoading(true)
+    getColumns(page)
+      .then(res => setColumns(res))
+      .finally(() => setLoading(false))
+  }
+
+  const handlePaginationChange = (event: ChangeEvent<unknown>, page: number): void => {
+    handleGetColumns(page)
+  }
+
   useEffect(() => {
-    fetch('api/blog/get-all/1')
-      .then(res => res.json())
-      .then(json => {
-        console.log('all-posts => ', json)
-        setColumns(json.posts)})
+    getCount()
+      .then(count => setPageCount(Math.ceil(count.count / 10)))
+    handleGetColumns(1)
   }, [])
 
 
@@ -53,7 +69,11 @@ function EditColumn({ handleInitEdit } : Props) {
                   className='text-eerie_black text-2xl'
                    
                 >
-                  {new Date(col.created_at).toLocaleDateString()} {col.title ? ` - ${col.title}` : null}
+                  {new Date(col.created_at).toLocaleDateString()} 
+                  {col.title ? ` - ${col.title}` : null}
+                  <span className={!col.published ? 'text-rose-700' : ''}>
+                    {col.published ? ' - published' : ' - not published'}
+                  </span>
                 </p>
               </AccordionSummary>
               <AccordianDetails>
@@ -78,7 +98,21 @@ function EditColumn({ handleInitEdit } : Props) {
               </AccordianDetails>
             </Accordian>
           ))
-          : <p>no colums to display</p>
+          : <p>no columns to display</p>
+        }
+        {pageCount && 
+          <div className='flex justify-center p-6'>
+            <Pagination 
+              count={pageCount} 
+              shape="rounded" 
+              onChange={handlePaginationChange}  
+            />
+          </div>
+        }
+        {loading &&
+          <div>
+            <LinearProgress />
+          </div>        
         }
       <Dialog
         open={showDeleteConfirm}
@@ -88,13 +122,13 @@ function EditColumn({ handleInitEdit } : Props) {
           Are you sure you wish to delete this column?
         </DialogTitle>
         <DialogContent>
-          This action will permanently delete thiss column!
+          This action will permanently delete this column!
         </DialogContent>
         <DialogActions>
           <Button
             variant='contained'
             color='warning'
-            onClick={() => handleDeleteColumn(idForDelete)}
+            onClick={() => handleConfirmDelete(idForDelete)}
           >
             Delete
           </Button>
