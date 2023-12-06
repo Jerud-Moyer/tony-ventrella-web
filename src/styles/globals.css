@@ -48,3 +48,7 @@ html {
   /* make default text size for text editor a bit larger */
   font-size: 15px;
 }
+
+.ql-snow .ql-editor img {
+  /* maybe use this to resize images? */
+}

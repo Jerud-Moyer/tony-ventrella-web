@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient, Prisma } from '@prisma/client'
+import { uploadToS3 } from '@/utils/s3/s3-service'
 
 type BlogEntry = {
   id: String,
@@ -14,7 +15,8 @@ type Data = {
   post?: BlogEntry,
   posts?: BlogEntry[],
   count?: number,
-  error?: string
+  error?: string,
+  url?: string
 }
 
 type Message = {
@@ -23,14 +25,20 @@ type Message = {
 
 const prisma = new PrismaClient()
 
-// requests are structured /api/blog/paginationSkip/id
+// requests are structured /api/blog/reqType/paginationSkip/id
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '50mb'
+    }
+  }
+}
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data | Message>
 ) {
-
-  console.log('request => ', req.query)
   const reqType = req.query.slug
     ? req.query.slug[0]
     :  null
@@ -39,66 +47,103 @@ export default async function handler(
     ? Number(req.query.slug[1])
     : 0
 
-  // if(reqType === 'add-new') {
-  //   const newEntry = req.body
-  //   if(newEntry) {
-  //     const postedPost = await prisma.post.create({data: newEntry})
-  //     res.status(200).json({ post: postedPost })
-  //   } else {
-  //     res.send({message: 'Whoops theres been a problem!'})
-  //   }
-  // } else if(reqType === 'get-published') {
-  //   const publishedEntries = await prisma.post.findMany({
-  //     skip: paginationSkip,
-  //     take: 10,
-  //     where: {
-  //       published: true
-  //     },
-  //     orderBy: {
-  //       createdAt: 'asc'
-  //     }
-  //   })
-
-  //   if(publishedEntries) {
-  //     res.status(200).json({posts: publishedEntries})
-  //   }
-  // }
+  const id = (req.query.slug && req.query.slug[2])
+    ? req.query.slug[2]
+    : null
 
   const data: Data = {}
+  const extApiUrl = process.env.EXTERNAL_API_URL as string
 
-  console.log('reqType => ', reqType)
   switch(reqType) {
     case 'get-count-published':
-      const count = await prisma.post.count({
-        where: {
-          published: true
-        }
-      })
-      if(count) data['count'] = count
+      const publishedCountRes = await fetch(`${extApiUrl}/columns/count-published`)
+      const publishedCount =  await publishedCountRes.json()
+      if(publishedCount) data['count'] = publishedCount
       else data['error'] = 'there\'s been a problem getting the count'
+      break
+
+    case 'get-count':
+      const countRes = await fetch(`${extApiUrl}/columns/count`)
+      const count = await countRes.json()
+      if(count) data['count'] = count
+      else data['error'] = 'there was a problem getting the count'
       break
     
     case 'get-published':
-      const publishedEntries = await prisma.post.findMany({
-        skip: paginationSkip,
-        take: 10,
-        where: {
-          published: true
-        },
-        orderBy: {
-          createdAt: 'asc'
-        }
-      })
-      if(publishedEntries) data['posts'] = publishedEntries
+      const publishedRes = await fetch(`${extApiUrl}/columns/published?page=${paginationSkip}&limit=10`)
+      const publishedEntries = await publishedRes.json()
+      if(publishedEntries) data['posts'] = publishedEntries.results
+      else data['error'] = 'there was a problem getting the posts'
+      break
+
+    case 'get-by-id':
+      const singleEntryRes = await fetch(`${extApiUrl}/columns/${id}`)
+      const entry = await singleEntryRes.json()
+
+      if(entry) {
+        data['posts'] = entry
+      } else {
+        data['error'] = 'there was a problem getting this entry.'
+      }
+      break
+
+    case 'get-all':
+      const res = await fetch(`${extApiUrl}/columns?page=${paginationSkip}&limit=10`)
+      const entries = await res.json()
+      if(entries) data['posts'] = entries.results
       else data['error'] = 'there was a problem getting the posts'
       break
 
     case 'add-new':
-      console.log('add-new called')
       const newEntry = req.body
-      const postedPost = await prisma.post.create({data: newEntry})
+      const post = await fetch(`${extApiUrl}/columns`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newEntry)
+      })
+      const postedPost = await post.json()
       if(postedPost) data['post'] = postedPost
       else data['error'] = 'there\'s been a problem saving this entry'
+      break
+
+    case 'update-entry':
+      const entryForUpdate = req.body
+      const updatedEntryRes = await fetch(`${extApiUrl}/columns`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(entryForUpdate)
+      })
+      const updatedEntry = await updatedEntryRes.json()
+      if(updatedEntry) data['post'] = updatedEntry
+      else data['error'] = 'there was a problem updating your post'
+      break
+
+    case 'delete-entry':
+      const deletedEntryRes = await fetch(`${extApiUrl}/columns/${id}`, {
+        method: 'DELETE'
+      })
+      if(deletedEntryRes) {
+        const deletedEntry = await deletedEntryRes.json()
+        data['posts'] = deletedEntry 
+      } else {
+        data['error'] = 'there was a problem deleting your post'
+      }
+      break
+
+    case 'upload-image':
+      const {
+        encodedImage,
+        date     
+      } = req.body
+      const newUrl = await uploadToS3(
+        Buffer.from(encodedImage, 'base64'),
+        date
+      )
+      data['url'] = newUrl
       break
 
     default:
@@ -106,6 +151,7 @@ export default async function handler(
   }
 
   if(!data.error) {
+    console.log('no error? => ', data)
     res.status(200).json(data)
   } else {
     res.status(500).json(data)

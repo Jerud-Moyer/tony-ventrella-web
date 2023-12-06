@@ -1,11 +1,6 @@
 import { Divider } from '@mui/material'
 import React from 'react'
-
-type Column = {
-  title: string | null,
-  createdAt: Date,
-  content: string 
-}
+import { Column } from '@/types'
 
 type Props = {
   columns: Column[]
@@ -21,7 +16,7 @@ function BlogList({ columns }: Props) {
             </p>
           }
           <p className='my-4'>
-            {new Date(col.createdAt).toLocaleDateString()}
+            {new Date(col.created_at).toLocaleDateString()}
           </p>
           <div className='column-body'>
             <p dangerouslySetInnerHTML={{__html: col.content}}/>
