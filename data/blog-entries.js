@@ -131,5 +131,18 @@ export const blogEntries = [
       'Even though I knew what the outcome of the game was before I saw the video, it didn\’t matter. I\’ll probably never delete this particular Apple Cup. After all it is the last official Pac-12 Apple Cup meeting between these two storied programs.',
       'No time to fret over the greed and mismanagement that led to the demise of the Pac-12, we’ve got the rest of our lives to do that. I choose to celebrate one fantastic football game, between two arch rivals and for now leave it at that.'
     ]
+  },
+  {
+    createdAt: 1701840912785,
+    title: '',
+    content: [
+      'Mariner fans are in a frenzy over the recent trade of Jarred Kelenic, Marco Gonzales and Evan White to the Atlanta Braves for right handed pitchers Jackson Kowar and Cole Phillips. The team doesn’t hide the fact that the move is a salary dump but fans are upset that there doesn\’t seem to be second chapter to this story. It seems fair to ask, “what now. Now that you\’ve dumped salary, what are your plans with that money?” It\’s a fair question and Mariner fans have little or no interest in waiting too long for an answer.',
+      'I hope baseball fans in general are upset over the fact that Lou Piniella missed being elected to the Baseball Hall of Fame by one vote, one lousy vote. What else does this guy need to do to get to Cooperstown? He played in the majors for 20 years, was once “Rookie of the Year,” in 1969 and won two World Series titles as a Yankee outfield in 1977 and 78. I had the pleasure of interviewing Lou as a Yankee in 1978 and later covered his World Series victory as manager of the Reds in the 1990 fall classic.',
+      'When Lou came to Seattle in 1993 his impact on the Mariners was almost immediate. The 1995 season was a highlight for Mariner fans and was certainly the most fun I\’ve ever had covering a baseball team.',
+      'Lou needed 12 votes to make the hall of fame but came up one vote shy. He\’ll have another chance in 2026.',
+      'I was debating with a friend the outcome of the University of Washington\’s 13-0 season and second seed in the college playoffs. “Who wants to go to the Sugar Bowl,” my friend asked. I agreed the Rose Bowl would be a fitting final chapter in the history of the Pac-12- Husky connection, but the higher seed won out so it\’ll be Washington vs Texas on New Years Day in New Orleans.',
+      'As I thought about it, I realized for anyone born after 1991 it may be more of an adventure to travel to New Orleans instead of Pasadena for the New Year\’s game. For me, a guy who covered the 1978 Husky victory over Michigan in the Rose Bowl and the 2001 victory over Iowa, it would\’ve been a blast, but I was born before 1991.',
+      'Finally a word about the high school football championships being played at Husky Stadium. I love it. Keep it going, it\’s a great experience for the players, the students and the fans.'
+    ]
   }
 ]
