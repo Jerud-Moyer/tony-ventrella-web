@@ -67,15 +67,18 @@ function Admin() {
           setBodyText(col.content)
           setIdToUpdate(id)
         })
+      }
     }
-  }
-
+    
   const handleCancelEdit = (): void => {
     clearForm()
   }
-
+  
   const handleUpdateColumn = (): void => {
     setLoading(true)
+    // if(!newEntry.created_at.length && date) newEntry.created_at = date
+    console.log('newEntry => ', newEntry)
+    
     updateColumn(newEntry)
       .then(res => {
         if(res.error) {

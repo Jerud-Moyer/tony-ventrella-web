@@ -60,13 +60,19 @@ function TextEditor ({
     'indent',
     'link',
     'image',
-    'color'
+    'color',
+    'align'
   ]), [])
 
   const modules = useMemo(() => ({
     toolbar: {
       container: [
-      ['bold', 'italic', 'list'], ['link', 'image'],
+      [{'size': ['small', false, 'large', 'huge']}],
+      // [{'header': [1, 2, 3, 4, 5, 6, false]}],
+      ['bold', 'italic', 'underline', {'list': 'ordered'}, {'list': 'bullet'}], 
+      [{'font': []}, {'align': []}, {'color': []}],
+      ['link', 'image'],
+
       ],
       handlers: {
         'image': handleUpload

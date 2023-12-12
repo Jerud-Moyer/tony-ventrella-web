@@ -59,7 +59,6 @@ export const requestUpload = async(
     const json = await res.json()
     return json
   } else {
-    console.log('more error stuff here? => ', res)
     console.error('there has been a problem with your upload')
     return await res.json()
   }
