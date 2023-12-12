@@ -129,14 +129,14 @@ export const blogEntries = [
       'Would they send Johnson to get that yard or fake and throw a short pass to Odunze, or would Penix run a keeper straight up the middle. How about none of those. “I figured it was worth a chance” said UW coach Kalen DeBoer a few minutes after Penix faked a handoff to Johnson then flipped it to his favorite target Odunze who needed one yard and got 23 instead.',
       'That led to the winning field goal by Gross and a thrilling finish for the 115th Apple Cup. Huskies win 24-21 to finish the regular season at 12-0.',
       'Even though I knew what the outcome of the game was before I saw the video, it didn\’t matter. I\’ll probably never delete this particular Apple Cup. After all it is the last official Pac-12 Apple Cup meeting between these two storied programs.',
-      'No time to fret over the greed and mismanagement that led to the demise of the Pac-12, we’ve got the rest of our lives to do that. I choose to celebrate one fantastic football game, between two arch rivals and for now leave it at that.'
+      'No time to fret over the greed and mismanagement that led to the demise of the Pac-12, we\’ve got the rest of our lives to do that. I choose to celebrate one fantastic football game, between two arch rivals and for now leave it at that.'
     ]
   },
   {
     createdAt: 1701840912785,
     title: '',
     content: [
-      'Mariner fans are in a frenzy over the recent trade of Jarred Kelenic, Marco Gonzales and Evan White to the Atlanta Braves for right handed pitchers Jackson Kowar and Cole Phillips. The team doesn’t hide the fact that the move is a salary dump but fans are upset that there doesn\’t seem to be second chapter to this story. It seems fair to ask, “what now. Now that you\’ve dumped salary, what are your plans with that money?” It\’s a fair question and Mariner fans have little or no interest in waiting too long for an answer.',
+      'Mariner fans are in a frenzy over the recent trade of Jarred Kelenic, Marco Gonzales and Evan White to the Atlanta Braves for right handed pitchers Jackson Kowar and Cole Phillips. The team doesn\’t hide the fact that the move is a salary dump but fans are upset that there doesn\’t seem to be second chapter to this story. It seems fair to ask, “what now. Now that you\’ve dumped salary, what are your plans with that money?” It\’s a fair question and Mariner fans have little or no interest in waiting too long for an answer.',
       'I hope baseball fans in general are upset over the fact that Lou Piniella missed being elected to the Baseball Hall of Fame by one vote, one lousy vote. What else does this guy need to do to get to Cooperstown? He played in the majors for 20 years, was once “Rookie of the Year,” in 1969 and won two World Series titles as a Yankee outfield in 1977 and 78. I had the pleasure of interviewing Lou as a Yankee in 1978 and later covered his World Series victory as manager of the Reds in the 1990 fall classic.',
       'When Lou came to Seattle in 1993 his impact on the Mariners was almost immediate. The 1995 season was a highlight for Mariner fans and was certainly the most fun I\’ve ever had covering a baseball team.',
       'Lou needed 12 votes to make the hall of fame but came up one vote shy. He\’ll have another chance in 2026.',
@@ -144,5 +144,20 @@ export const blogEntries = [
       'As I thought about it, I realized for anyone born after 1991 it may be more of an adventure to travel to New Orleans instead of Pasadena for the New Year\’s game. For me, a guy who covered the 1978 Husky victory over Michigan in the Rose Bowl and the 2001 victory over Iowa, it would\’ve been a blast, but I was born before 1991.',
       'Finally a word about the high school football championships being played at Husky Stadium. I love it. Keep it going, it\’s a great experience for the players, the students and the fans.'
     ]
-  }
+  },
+  {
+    createdAt: 1702356581235,
+    title: '',
+    content: [
+      'I was dusting off one of my book shelves the other night and ran across a paperback from the mid 1960s, titled, “The $400,000 Quarterback. It was the story of the largest sports contrast in history to that point. Alabama Quarterback Joe Namath had signed what in today\’s world would be a days pay for every quarterback in the NFL with the exception of Brock Purdy, to date the most successful signal caller in the league but still playing on a rookie salary.',
+      'When “Broadway Joe” signed with the fledgling Jets of the American Football League, they expected him to save the franchise. He did more than that in his career, he saved the Jets and helped the NFL-AFL merge that today dominates the sports scene in America and a good part of the world.',
+      'At the time sport writers in New York ands around the country were asking, “what does anyone need $400,000 for? You\’ve gotta understand their perspective to understand the question.',
+      'Soon to be Hall of Fame outfielder Mickey Mantle was making $100,000 a year but he won the Triple Crown in 1956 and had a lifetime batting average near .300, not to mention all those career home runs.',
+      'Maybe it was a long hair at the time or the television commercial for panty hose, but “Broadway Joe,” signing a deal for $400,000 was crazy to a lot of people. Then he led his team to an upset victory over Johnnie Unitas and the Baltimore Colts and suddenly the 400 G\’s didn’t look that bad.',
+      'Today that kind of money is one game\’s salary for may MLB and NFL stars and as on December 9, 2023, it\’s a drop in the bucket of the contract signed by Japanese pitcher/slugger Shohei Ohtani, who agreed to a deal worth $700-million over a ten year period. That\’s 70-million a year for ten years.',
+      'Granted he can’t pitch again until the 2025 season until he fully recovers from Tommy John surgery but he\’s still the best hitter in the game and makes the Dodgers an immediate threat to win it all in 2024.',
+      'Regardless of what kind of season Ohtani has, one has to wonder what it feels like to be paid that much money. We\’ve all wondered about winning a lottery for just a few million. What would you do with a few million, 50-million, 100-million or 700-million.',
+      'I wish Ohtani the best and I\’m confident he\’s smart and kind enough to help thousands or people. Hey, Taylor Swift gives millions away every week, I expect Shohei Ohtani to do the same.'
+    ]
+  },
 ]
