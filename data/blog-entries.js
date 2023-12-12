@@ -149,7 +149,7 @@ export const blogEntries = [
     createdAt: 1702356581235,
     title: '',
     content: [
-      'I was dusting off one of my book shelves the other night and ran across a paperback from the mid 1960s, titled, “The $400,000 Quarterback. It was the story of the largest sports contrast in history to that point. Alabama Quarterback Joe Namath had signed what in today\’s world would be a days pay for every quarterback in the NFL with the exception of Brock Purdy, to date the most successful signal caller in the league but still playing on a rookie salary.',
+      'I was dusting off one of my book shelves the other night and ran across a paperback from the mid 1960s, titled, “The $400,000 Quarterback”. It was the story of the largest sports contrast in history to that point. Alabama Quarterback Joe Namath had signed what in today\’s world would be a days pay for every quarterback in the NFL with the exception of Brock Purdy, to date the most successful signal caller in the league but still playing on a rookie salary.',
       'When “Broadway Joe” signed with the fledgling Jets of the American Football League, they expected him to save the franchise. He did more than that in his career, he saved the Jets and helped the NFL-AFL merge that today dominates the sports scene in America and a good part of the world.',
       'At the time sport writers in New York ands around the country were asking, “what does anyone need $400,000 for? You\’ve gotta understand their perspective to understand the question.',
       'Soon to be Hall of Fame outfielder Mickey Mantle was making $100,000 a year but he won the Triple Crown in 1956 and had a lifetime batting average near .300, not to mention all those career home runs.',
