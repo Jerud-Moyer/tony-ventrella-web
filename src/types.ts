@@ -5,3 +5,9 @@ export type Column = {
   content: string,
   published?: boolean
 }
+
+export type User = {
+  email: string,
+  password?: string,
+  firstName?: string,
+}

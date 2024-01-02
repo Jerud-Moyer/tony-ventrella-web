@@ -2,11 +2,14 @@ import Notification from '@/components/Notification'
 import SubPageLayout from '@/components/SubPageLayout'
 import TextEditor from '@/components/TextEditor.jsx'
 import EditColumn from '@/components/admin/EditColumn'
+import { useAuthLoading, useCurrentUser } from '@/context/AuthContext'
 import { Column } from '@/types'
 import { deleteColumn, getColumnById, getCountPublished, postColumn, updateColumn } from '@/utils/api/column-utils'
 import { Box, Button, FormControl, FormControlLabel, FormLabel, LinearProgress, Switch, Tab, Tabs, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
+import { redirect } from 'next/navigation'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
 function Admin() {
@@ -19,6 +22,10 @@ function Admin() {
   const [loading, setLoading] = useState<boolean>(false)
   const [notification, setNotification] = useState<string>('')
   const [messageType, setMessageType] = useState<'warning' | 'success'>('success')
+
+  const authLoading = useAuthLoading()
+  const currentUser = useCurrentUser()
+  const router = useRouter()
 
   const newEntry: Column = {
     id: idToUpdate,
@@ -76,8 +83,6 @@ function Admin() {
   
   const handleUpdateColumn = (): void => {
     setLoading(true)
-    // if(!newEntry.created_at.length && date) newEntry.created_at = date
-    console.log('newEntry => ', newEntry)
     
     updateColumn(newEntry)
       .then(res => {
@@ -124,119 +129,137 @@ function Admin() {
       .finally(() => setLoading(false))
   }
 
+  useEffect(() => {
+    if(!currentUser) {
+      router.push('/login')
+    } else {
+      notify('success', `Welcome ${currentUser.firstName}!`)
+    }
+  }, [currentUser, router])
+
   return (
     <div>
       <SubPageLayout typeoutMessage='add a new column'>
-        <div className='w-full flex justify-center'>
-          <Tabs 
-            value={adminView}
-            onChange={handleAdminViewChange}  
-          >
-            <Tab 
-              label={!idToUpdate ? 'add a column' : 'edit'}
-              value='a'  
-            />
-            <Tab
-              label='edit a column'
-              value='b'
-            />
-          </Tabs>
-        </div>
-
-        {adminView === 'a' && !loading &&
-          <Box>
-            <div className='my-12'>
-              <DatePicker 
-                label='select a date'
-                value={date}
-                onChange={handleDateChange}
-              />
-            </div>
-            <div className='my-12'>
-              <TextField
-                label='enter a headline'
-                value={headline}
-                onChange={(e) => setHeadline(e.target.value)}
-                fullWidth
-              />
-            </div>
-            <FormLabel>
-              enter column text below
-            </FormLabel>
-            <TextEditor 
-              stateHandler={handleBodyText}
-              stringVal={bodyText}
-            />
-            <div className='my-12'>
-              <FormControl>
-                <FormLabel>
-                  publish this column now?
-                </FormLabel>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={published}
-                      onChange={() => setPublished(!published)}
-                    />
-                  }
-                  label={published ? 'yes' : 'no'}
-                />
-              </FormControl>
-            </div>
-            <div className='my-4'>
-              {idToUpdate
-              ?
-              <>
-                <div className='flex'>
-                  <div className='mr-4'>
-                    <Button
-                      variant='outlined'
-                      onClick={handleUpdateColumn}
-                    >
-                      Submit Edited Column
-                    </Button>
-                  </div>
-                  <div>
-                    <Button
-                      variant='outlined'
-                      onClick={handleCancelEdit}
-                    >
-                      Cancel Edit Column
-                    </Button>
-                  </div>
-                </div>
-              </>
-              :
-                <Button
-                  variant='outlined'
-                  onClick={handlePostColumn}
-                >
-                  Submit New Column
-                </Button>
-              }
-            </div>
-          </Box>
-        }  
-        {adminView == 'b' && 
-          <Box>
-            <EditColumn 
-              handleInitEdit={handleInitEdit} 
-              handleDeleteColumn={handleDeleteColumn}              
-            />
-          </Box>
-        }
-      </SubPageLayout>
-      <Notification 
-        severity={messageType}
-        message={notification}
-      />
-      {loading &&
-        <div className='absolute top-0 left-0 min-h-full min-w-full z-[100] backdrop-blur-md'>
+        {authLoading
+          ? 
           <div className='block mt-[50vh] ml-[25%] w-[50%] max-h-fit'>
             <LinearProgress />
           </div>
-        </div>
+          :
+          <>
+            <div className='w-full flex justify-center'>
+              <Tabs 
+                value={adminView}
+                onChange={handleAdminViewChange}  
+              >
+                <Tab 
+                  label={!idToUpdate ? 'add a column' : 'edit'}
+                  value='a'  
+                />
+                <Tab
+                  label='edit a column'
+                  value='b'
+                />
+              </Tabs>
+            </div>
+
+            {adminView === 'a' && !loading &&
+              <Box>
+                <div className='my-12'>
+                  <DatePicker 
+                    label='select a date'
+                    value={date}
+                    onChange={handleDateChange}
+                  />
+                </div>
+                <div className='my-12'>
+                  <TextField
+                    label='enter a headline'
+                    value={headline}
+                    onChange={(e) => setHeadline(e.target.value)}
+                    fullWidth
+                  />
+                </div>
+                <FormLabel>
+                  enter column text below
+                </FormLabel>
+                <TextEditor 
+                  stateHandler={handleBodyText}
+                  stringVal={bodyText}
+                />
+                <div className='my-12'>
+                  <FormControl>
+                    <FormLabel>
+                      publish this column now?
+                    </FormLabel>
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          checked={published}
+                          onChange={() => setPublished(!published)}
+                        />
+                      }
+                      label={published ? 'yes' : 'no'}
+                    />
+                  </FormControl>
+                </div>
+                <div className='my-4'>
+                  {idToUpdate
+                  ?
+                  <>
+                    <div className='flex'>
+                      <div className='mr-4'>
+                        <Button
+                          variant='outlined'
+                          onClick={handleUpdateColumn}
+                        >
+                          Submit Edited Column
+                        </Button>
+                      </div>
+                      <div>
+                        <Button
+                          variant='outlined'
+                          onClick={handleCancelEdit}
+                        >
+                          Cancel Edit Column
+                        </Button>
+                      </div>
+                    </div>
+                  </>
+                  :
+                    <Button
+                      variant='outlined'
+                      onClick={handlePostColumn}
+                    >
+                      Submit New Column
+                    </Button>
+                  }
+                </div>
+              </Box>
+            }  
+            {adminView == 'b' && 
+              <Box>
+                <EditColumn 
+                  handleInitEdit={handleInitEdit} 
+                  handleDeleteColumn={handleDeleteColumn}              
+                />
+              </Box>
+            }
+          
+          <Notification 
+            severity={messageType}
+            message={notification}
+          />
+          {loading &&
+            <div className='absolute top-0 left-0 min-h-full min-w-full z-[100] backdrop-blur-md'>
+              <div className='block mt-[50vh] ml-[25%] w-[50%] max-h-fit'>
+                <LinearProgress />
+              </div>
+            </div>
+          }
+        </>
       }
+      </SubPageLayout>
     </div>
   )
 }
