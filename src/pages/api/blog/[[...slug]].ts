@@ -72,6 +72,7 @@ export default async function handler(
     case 'get-published':
       const publishedRes = await fetch(`${extApiUrl}/columns/published?page=${paginationSkip}&limit=10`)
       const publishedEntries = await publishedRes.json()
+      console.log('PUBLISHED => ', publishedEntries)
       if(publishedEntries) data['posts'] = publishedEntries.results
       else data['error'] = 'there was a problem getting the posts'
       break
