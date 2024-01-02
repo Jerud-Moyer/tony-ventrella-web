@@ -1,13 +1,12 @@
 import { AuthContext } from "@/context/AuthContext"
-import { User } from "@/types"
 import { getVerify, postLogin, postSignup } from "@/utils/api/auth-utils"
 import { useEffect, useState } from "react"
 
-const AuthProvider = ({ children }: any) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
+const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  const signup = (newUser: User) => {
+  const signup = (newUser) => {
     setLoading(true)
     postSignup(newUser)
       .then(res => {
@@ -16,7 +15,7 @@ const AuthProvider = ({ children }: any) => {
       .finally(() => setLoading(false))
   }
 
-  const login = (user: User) => {
+  const login = (user) => {
     setLoading(true)
     postLogin(user)
       .then(res => setCurrentUser(res.user))

@@ -11,3 +11,10 @@ export type User = {
   password?: string,
   firstName?: string,
 }
+
+export type AuthState = {
+  currentUser: User | null;
+  loading: boolean;
+  signup: (user: User) => void;
+  login: (user: User) => void;
+}
