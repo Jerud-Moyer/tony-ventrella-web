@@ -1,55 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SubPageLayout from '@/components/SubPageLayout'
-import { blogEntries } from '../../../data/blog-entries'
-import { Divider } from '@mui/material'
-import Image from 'next/image'
+import { LinearProgress, Pagination } from '@mui/material'
+import BlogList from '@/components/BlogList'
+import { Column } from '../../types';
+import { getCountPublished, getPublishedColumns } from '@/utils/api/column-utils'
 
-function blog() { 
-  const entries = blogEntries.reverse().map((entry, i) => {
-    const date = new Date(entry.createdAt).toLocaleDateString()
-    const content = entry.content.map((line, i) => (
-      <p 
-        key={`line-${i}`}
-        className='mb-2'  
-      >
-        {line}
-      </p>
-    ))
-    return (
-    <div
-      key={`${entry.title}-${i}`}
-      className='text-eerie_black'  
-    >
-      <p className='text-3xl'>{ entry.title }</p>
-      <p className='my-4'>{ date }</p>
-      <div>
-          { ...content }
-      </div>
-      {entry.imageUrl && 
-        <div className='mt-8'>
-          <Image
-            src={entry.imageUrl}
-            alt='the mick'
-            width={500}
-            height={500}
-          />
-        </div>
-      }
-      <div className='my-12'>
-        <Divider />
-      </div>
-    </div>
-    )
-  })
+function Blog() { 
+  const [columns, setColumns] = useState<Column[]>([])
+  const [pageCount, setPageCount] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const handleGetColumns = (page: number): void => {
+    setLoading(true)
+    getPublishedColumns(page)
+      .then(cols => {setColumns(cols)})
+      .finally(() => setLoading(false))
+  }
+
+  const handlePaginationChange = (event: React.ChangeEvent<unknown>, page: number): void => {
+    handleGetColumns(page)
+  }
+
+  useEffect(() => {
+    getCountPublished()
+      .then(count => setPageCount(Math.ceil(count.count / 10)))
+    
+    handleGetColumns(1)
+  }, [])
+
+
   return (
     <div>
       <SubPageLayout typeoutMessage='Sport Tones'>
         <div className=''>
-          {...entries}
+          <div className=''>
+            {columns.length && 
+              <BlogList columns={columns}/>
+            }
+          </div>
         </div>
+        {loading &&
+          <LinearProgress />
+        }
+        {pageCount &&
+          <div className='flex justify-center'>
+            <Pagination
+              shape='rounded'
+              count={pageCount}
+              onChange={handlePaginationChange}
+            />
+          </div>
+        }
       </SubPageLayout>
     </div>
   )
 }
 
-export default blog
+export default Blog

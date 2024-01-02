@@ -39,3 +39,64 @@ html {
 .name-headline {
   font-family: 'elegant-typewriter';
 } 
+
+/*.column-body p {
+  margin: 10px 0;
+}*/
+
+.ql-container p {
+  /* make default text size for text editor a bit larger */
+  font-size: 15px;
+}
+
+.ql-snow .ql-editor img {
+  /* maybe use this to resize images? */
+}
+
+.ql-font-serif {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.ql-font-monospace {
+  font-family: Monaco, Courier New, monospace;
+}
+
+.ql-size-small {
+  font-size: .75em; 
+}
+
+.ql-size-large {
+  font-size: 1.25em;
+}
+
+.ql-size-huge {
+  font-size: 1.5em;
+}
+
+.column-body a {
+  color: cornflowerblue;
+}
+
+.column-body ol {
+  list-style: decimal!important;
+}
+
+.column-body ul {
+  list-style: disc;
+}
+
+.ql-align-right {
+  text-align: right;
+}
+
+.ql-align-center {
+  text-align: center;
+}
+
+.ql-align-left {
+  text-align: left;
+}
+
+.ql-align-justify {
+  text-align: justify;
+}
