@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient, Prisma } from '@prisma/client'
+// import { PrismaClient, Prisma } from '@prisma/client'
 import { uploadToS3 } from '@/utils/s3/s3-service'
 
 type BlogEntry = {
@@ -23,7 +23,7 @@ type Message = {
   message: string
 }
 
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
 
 // requests are structured /api/blog/reqType/paginationSkip/id
 
