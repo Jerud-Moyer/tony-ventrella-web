@@ -25,7 +25,6 @@ function Login() {
 
   useEffect(() => {
     if(user) {
-      console.log('whaaaa? ', user)
       router.push('/admin')
     }
   }, [user, router])
@@ -33,7 +32,7 @@ function Login() {
   return (
     <SubPageLayout typeoutMessage='signup for admin access'>
       {loading &&
-        <div className='absolute top-0 left-0 h-full w-full flex justify-center items-center '>
+        <div className='absolute top-[35vh] left-[12vw] h-fit w-[76vw] pt-24'>
           <LinearProgress/>
         </div>
       }
