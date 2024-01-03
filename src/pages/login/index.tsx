@@ -31,8 +31,8 @@ function Login() {
   return (
     <SubPageLayout typeoutMessage='Enter email and password'>
       {loading &&
-        <div className='absolute top-0 left-0 h-full w-full flex justify-center items-center '>
-          <LinearProgress/>
+        <div className='absolute top-[35vh] left-[12vw] h-fit w-[76vw] pt-24'>
+            <LinearProgress/>
         </div>
       }
       <div className={`
