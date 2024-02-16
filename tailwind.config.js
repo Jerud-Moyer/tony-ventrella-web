@@ -26,11 +26,22 @@ module.exports = {
           '0%': {opacity: '0', transform: 'scale(.9)'},
           '%50': {opacity: '1'},
           '100%': {transform: 'scale(1)'}
+        },
+        rise: {
+          '0%': {transform: 'translateY(300px)'},
+          '100%': {transform: 'translateY(0px)'}
+        },
+        rise_later: {
+          '0%': {transform: 'translateY(300px) translateX(100px) rotate(-12deg)'},
+          '40%': {transform: 'translateY(300px)'},
+          '100%': {transform: 'translateY(-155px) translateX(120px) rotate(-12deg)'}
         }
       },
       animation: {
         fade: 'fade .8s ease',
-        image_fade: 'fade 2s ease'
+        image_fade: 'fade 2s ease',
+        rise: 'rise 1s ease',
+        rise_later: 'rise_later 1.5s ease'
       }
     },
   },
