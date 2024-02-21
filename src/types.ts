@@ -3,7 +3,8 @@ export type Column = {
   title: string | null,
   created_at: Date | string,
   content: string,
-  published?: boolean
+  published?: boolean,
+  blog_id: number
 }
 
 export type User = {
@@ -17,4 +18,9 @@ export type AuthState = {
   loading: boolean;
   signup: (user: User) => void;
   login: (user: User) => void;
+}
+
+export type Blog = {
+  name: string;
+  id: number;
 }

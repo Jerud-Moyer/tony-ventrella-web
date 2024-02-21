@@ -3,12 +3,11 @@ import SubPageLayout from '@/components/SubPageLayout'
 import TextEditor from '@/components/TextEditor.jsx'
 import EditColumn from '@/components/admin/EditColumn'
 import { useAuthLoading, useCurrentUser } from '@/context/AuthContext'
-import { Column } from '@/types'
-import { deleteColumn, getColumnById, getCountPublished, postColumn, updateColumn } from '@/utils/api/column-utils'
-import { Box, Button, FormControl, FormControlLabel, FormLabel, LinearProgress, Switch, Tab, Tabs, TextField } from '@mui/material'
+import { Blog, Column } from '@/types'
+import { deleteColumn, getColumnById, getCountPublished, postColumn, updateColumn, getBlogs } from '@/utils/api/column-utils'
+import { Box, Button, FormControl, FormControlLabel, FormLabel, LinearProgress, Radio, RadioGroup, Switch, Tab, Tabs, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
-import { redirect } from 'next/navigation'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
@@ -22,7 +21,9 @@ function Admin() {
   const [loading, setLoading] = useState<boolean>(false)
   const [notification, setNotification] = useState<string>('')
   const [messageType, setMessageType] = useState<'warning' | 'success'>('success')
-
+  const [blogId, setBlogId] = useState<number>(1)
+  const [blogs, setBlogs] = useState<Blog[]>([])
+ 
   const authLoading = useAuthLoading()
   const currentUser = useCurrentUser()
   const router = useRouter()
@@ -32,7 +33,8 @@ function Admin() {
     title: headline,
     content: bodyText,
     created_at: date || '',
-    published
+    published,
+    blog_id: blogId
   }
 
   const clearForm = (): void => {
@@ -41,13 +43,18 @@ function Admin() {
     setPublished(false)
     setBodyText('')
     setIdToUpdate(null)
+    setBlogId(1)
   }
 
   const handleAdminViewChange = (
     e: React.SyntheticEvent, val: string
-  ) => {
+  ): void => {
     setAdminView(val)
     clearForm()
+  }
+  
+  const handleBlogChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setBlogId(Number(e.target.value))
   }
 
   const notify = (severity: 'warning' | 'success', message: string): void => {
@@ -73,6 +80,7 @@ function Admin() {
           setPublished(col.published)
           setBodyText(col.content)
           setIdToUpdate(id)
+          setBlogId(col.blog_id)
         })
       }
     }
@@ -129,11 +137,19 @@ function Admin() {
       .finally(() => setLoading(false))
   }
 
+  const handleGetBlogs = () => {
+    getBlogs()
+     .then(res => {
+      setBlogs(res.blogs)
+     })
+  }
+
   useEffect(() => {
     if(!currentUser) {
       router.push('/login')
     } else {
       notify('success', `Welcome ${currentUser.firstName}!`)
+      handleGetBlogs()
     }
   }, [currentUser, router])
 
@@ -165,6 +181,35 @@ function Admin() {
 
             {adminView === 'a' && !loading &&
               <Box>
+                <div className='my-12'>
+                  <FormControl>
+                    <FormLabel>
+                      select a blog
+                    </FormLabel>
+                    
+                    <RadioGroup
+                      value={blogId}
+                      name='blog-radios'
+                      onChange={handleBlogChange}
+                    >
+                      {blogs &&
+                        blogs.map((blog) => (
+                          <FormControlLabel 
+                            value={blog.id}
+                            control={<Radio />}
+                            label={blog.name}
+                            key={blog.name}
+                            sx={{
+                              color: '#111910',
+                              textTransform: 'capitalize'
+                            }}
+                          />
+                        ))
+                      }
+                    </RadioGroup>
+                    
+                  </FormControl>
+                </div>
                 <div className='my-12'>
                   <DatePicker 
                     label='select a date'
@@ -200,6 +245,9 @@ function Admin() {
                         />
                       }
                       label={published ? 'yes' : 'no'}
+                      sx={{
+                        color: '#111910',
+                      }}
                     />
                   </FormControl>
                 </div>
@@ -241,7 +289,8 @@ function Admin() {
               <Box>
                 <EditColumn 
                   handleInitEdit={handleInitEdit} 
-                  handleDeleteColumn={handleDeleteColumn}              
+                  handleDeleteColumn={handleDeleteColumn}            
+                  blogs={blogs} 
                 />
               </Box>
             }

@@ -6,6 +6,8 @@ import Footer from '@/components/Footer'
 import ContactForm from '@/components/ContactForm'
 import SlideShow from '@/components/SlideShow'
 import careerImages from '../../data/career-images'
+import PodcastBanner from '@/components/PodcastBanner'
+import GoodWeDoBanner from '@/components/GoodWeDoBanner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -49,6 +51,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+        {/* <div className='mt-52'>
+          <GoodWeDoBanner />
+        </div> */}
         <div className='flex justify-around'>
           <div className='w-fit block mx-auto mt-40'>
             <SlideShow

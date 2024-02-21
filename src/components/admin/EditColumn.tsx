@@ -1,26 +1,29 @@
-import { Column } from '@/types'
+import { Blog, Column } from '@/types'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import Accordian from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordianDetails from '@mui/material/AccordionDetails'
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp'
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, LinearProgress, Pagination } from '@mui/material'
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, LinearProgress, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material'
 import { deleteColumn, getColumns, getCount, getCountPublished } from '@/utils/api/column-utils'
 
 type Props = {
   handleInitEdit: (id: number | null) => void,
-  handleDeleteColumn: (id: number) => void
+  handleDeleteColumn: (id: number) => void,
+  blogs: Blog[]
 }
 
 function EditColumn({ 
   handleInitEdit,
-  handleDeleteColumn
+  handleDeleteColumn,
+  blogs
 } : Props) {
   const [columns, setColumns] = useState<Column[] | null>(null)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false)
   const [idForDelete, setIdForDelete] = useState<number | null>(null)
   const [pageCount, setPageCount] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
+  const [blogId, setBlogId] = useState<string>('1')
 
   const handleConfirmDelete = (id: number | null) => {
     setShowDeleteConfirm(false)
@@ -39,9 +42,9 @@ function EditColumn({
     setShowDeleteConfirm(false)
   }
 
-  const handleGetColumns = (page: number): void => {
+  const handleGetColumns = (page: number, id = blogId): void => {
     setLoading(true)
-    getColumns(page)
+    getColumns(page, Number(id))
       .then(res => setColumns(res))
       .finally(() => setLoading(false))
   }
@@ -50,15 +53,59 @@ function EditColumn({
     handleGetColumns(page)
   }
 
+  const handleBlogSelect = (e: SelectChangeEvent): void => {
+    setBlogId(e.target.value)
+  }
+
   useEffect(() => {
-    getCount()
+    getCount(Number(blogId))
       .then(count => setPageCount(Math.ceil(count.count / 10)))
-    handleGetColumns(1)
-  }, [])
+    handleGetColumns(1, blogId)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blogId])
 
 
   return (
     <div className='p-24'>
+      <div className='mb-12'>
+        <FormControl
+          sx={{
+            minWidth: 250
+          }}
+        >
+          <InputLabel
+            id='blog-label'
+            sx={{
+              color: '#111910',
+
+              '&.Mui-focused': {
+                color: '#111910'
+              }
+            }}
+          >
+            which blog do you want to edit?
+          </InputLabel>
+          <Select
+            label='which blog do you want to edit?'
+            labelId='blog-label'
+            value={blogId}
+            onChange={handleBlogSelect}
+            color='eerie_black'
+          >
+            {blogs.map(blog => (
+              <MenuItem
+                key={blog.name}
+                value={blog.id}
+                sx={{
+                  color: '#111910'
+                }}
+              >
+                {blog.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
         {columns ?
           columns.map((col, i) => (
             <Accordian key={`column-${col.created_at}-${i}`} >
