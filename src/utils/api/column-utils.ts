@@ -1,13 +1,13 @@
 import { Column } from "@/types"
 
-export const getCount = async() => {
-  const res = await fetch('/api/blog/get-count')
+export const getCount = async(blogId: number) => {
+  const res = await fetch(`/api/blog/get-count/0/${blogId}`)
   const json = await res.json()
   return json.count
 }
 
-export const getCountPublished = async() => {
-  const res = await fetch('/api/blog/get-count-published')
+export const getCountPublished = async(blogId: number) => {
+  const res = await fetch(`/api/blog/get-count-published/0/${blogId}`)
   const json = await res.json()
   return json.count
 }
@@ -18,14 +18,14 @@ export const getColumnById = async(id: number) => {
   return json.posts
 }
 
-export const getColumns = async(page: number): Promise<Column[]> => {
-  const res = await fetch(`/api/blog/get-all/${page}`)
+export const getColumns = async(page: number, blogId: number): Promise<Column[]> => {
+  const res = await fetch(`/api/blog/get-all-by-blog/${page}/${blogId}`)
   const json = await res.json()
   return json.posts
 }
 
-export const getPublishedColumns = async(page: number): Promise<Column[]> => {
-  const res = await fetch(`/api/blog/get-published/${page}`)
+export const getPublishedColumns = async(page: number, blogId: number): Promise<Column[]> => {
+  const res = await fetch(`/api/blog/get-published/${page}/${blogId}`)
   const json = await res.json()
   return json.posts
 }
@@ -56,6 +56,12 @@ export const updateColumn = async(column: Column) => {
 
 export const deleteColumn = async(id: number) => {
   const res = await fetch(`/api/blog/delete-entry/0/${id}`)
+  const json = await res.json()
+  return json
+}
+
+export const getBlogs = async() => {
+  const res = await fetch('/api/blog/get-blogs')
   const json = await res.json()
   return json
 }

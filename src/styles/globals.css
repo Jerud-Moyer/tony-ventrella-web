@@ -48,6 +48,12 @@ html {
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'go-bold';
+  src: url('/fonts/Gobold-regular.otf');
+  font-display: swap;
+}
+
 .name-headline {
   font-family: 'elegant-typewriter';
 } 
@@ -59,6 +65,11 @@ html {
 
 .podcast-name-b {
   font-family: 'ananda-black';
+  text-shadow:  0 2px 3px white;
+}
+
+.good-banner-title {
+  font-family: 'go-bold';
   text-shadow:  0 2px 3px white;
 }
 

@@ -11,12 +11,18 @@ type BlogEntry = {
   published: Boolean
 }
 
+type Blog = {
+  id: number,
+  name: string
+}
+
 type Data = {
   post?: BlogEntry,
   posts?: BlogEntry[],
   count?: number,
   error?: string,
-  url?: string
+  url?: string,
+  blogs?: Blog[]
 }
 
 type Message = {
@@ -56,23 +62,22 @@ export default async function handler(
 
   switch(reqType) {
     case 'get-count-published':
-      const publishedCountRes = await fetch(`${extApiUrl}/columns/count-published`)
+      const publishedCountRes = await fetch(`${extApiUrl}/columns/count-published/${id}`)
       const publishedCount =  await publishedCountRes.json()
       if(publishedCount) data['count'] = publishedCount
       else data['error'] = 'there\'s been a problem getting the count'
       break
 
     case 'get-count':
-      const countRes = await fetch(`${extApiUrl}/columns/count`)
+      const countRes = await fetch(`${extApiUrl}/columns/count/${id}`)
       const count = await countRes.json()
       if(count) data['count'] = count
       else data['error'] = 'there was a problem getting the count'
       break
     
     case 'get-published':
-      const publishedRes = await fetch(`${extApiUrl}/columns/published?page=${paginationSkip}&limit=10`)
+      const publishedRes = await fetch(`${extApiUrl}/columns/published?page=${paginationSkip}&limit=10&blogId=${id}`)
       const publishedEntries = await publishedRes.json()
-      console.log('PUBLISHED => ', publishedEntries)
       if(publishedEntries) data['posts'] = publishedEntries.results
       else data['error'] = 'there was a problem getting the posts'
       break
@@ -92,6 +97,13 @@ export default async function handler(
       const res = await fetch(`${extApiUrl}/columns?page=${paginationSkip}&limit=10`)
       const entries = await res.json()
       if(entries) data['posts'] = entries.results
+      else data['error'] = 'there was a problem getting the posts'
+      break
+
+    case 'get-all-by-blog':
+      const resp = await fetch(`${extApiUrl}/columns/blog?page=${paginationSkip}&limit=10&blogId=${id}`)
+      const entriesByBlog = await resp.json()
+      if(entriesByBlog) data['posts'] = entriesByBlog.results
       else data['error'] = 'there was a problem getting the posts'
       break
 
@@ -147,12 +159,21 @@ export default async function handler(
       data['url'] = newUrl
       break
 
+    case 'get-blogs':
+      const blogs = await fetch(`${extApiUrl}/blogs`)
+      const blogJson = await blogs.json()
+      if(blogs) {
+        data['blogs'] = blogJson
+      } else {
+        data['error'] = 'there was a problem getting the blogs'
+      }
+      break
+
     default:
       data['error'] = 'sorry nothing here'
   }
 
   if(!data.error) {
-    console.log('no error? => ', data)
     res.status(200).json(data)
   } else {
     res.status(500).json(data)

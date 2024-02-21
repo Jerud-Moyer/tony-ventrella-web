@@ -25,7 +25,7 @@ function PodcastBanner() {
           }
         })
       }, {
-        rootMargin: '125px',
+        rootMargin: '80px',
         threshold: 1
       })
     

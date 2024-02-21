@@ -28,7 +28,7 @@ module.exports = {
           '100%': {transform: 'scale(1)'}
         },
         rise: {
-          '0%': {transform: 'translateY(300px)'},
+          '0%': {transform: 'translateY(400px)'},
           '100%': {transform: 'translateY(0px)'}
         },
         rise_later: {
@@ -40,7 +40,7 @@ module.exports = {
       animation: {
         fade: 'fade .8s ease',
         image_fade: 'fade 2s ease',
-        rise: 'rise 1s ease',
+        rise: 'rise 1.2s ease',
         rise_later: 'rise_later 1.5s ease'
       }
     },

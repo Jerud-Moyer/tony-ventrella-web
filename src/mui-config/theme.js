@@ -20,6 +20,9 @@ const theme = createTheme({
     },
     old_gold: {
       main: '#d8ba5e'
+    },
+    eerie_black: {
+      main: '#111910'
     }
   }
 })
