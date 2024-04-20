@@ -56,20 +56,14 @@ module.exports = {
             transform: 'scale(1.5)'
           },
           '25%': {
-            // color: '#d8ba5e',
             textShadow: '5px 5px 10px #cba328'
           },
-          // '40%': {
-          //   color: '#111910',
-          //   textShadow: '5px 5px 10px #d8ba5e'
-          // },
           '50%': {
             color: '#d8ba5e',
             textShadow: '5px 5px 10px #111910',
             transform: 'scale(1.5)'
           },
           '75%': {
-            // color: '#d8ba5e',
             textShadow: '5px 5px 10px #cba328'
           },
           '100%': {
