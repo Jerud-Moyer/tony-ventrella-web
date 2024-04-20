@@ -54,6 +54,10 @@ html {
   font-display: swap;
 }
 
+.glow {
+  text-shadow: 2px 2px 5px #cba328;
+}
+
 .name-headline {
   font-family: 'elegant-typewriter';
 } 
