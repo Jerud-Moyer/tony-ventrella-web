@@ -51,9 +51,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* <div className='mt-52'>
+        <div className='mt-52'>
           <GoodWeDoBanner />
-        </div> */}
+        </div>
         <div className='flex justify-around'>
           <div className='w-fit block mx-auto mt-40'>
             <SlideShow
