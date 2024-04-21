@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
 
 function GoodWeDoBanner() {
@@ -27,20 +28,33 @@ function GoodWeDoBanner() {
   }, [])
 
   return (
-    <div className='w-screen bg-eerie_black p-8 relative overflow-hidden'>
+    <div className='w-screen bg-eerie_black p-8 relative overflow-hidden flex flex-row items-center justify-center gap-44'>
       <div>
-        <div ref={titleRef} id='banner_title'>
-          {showTitle &&
-            <div className='good-banner-title text-6xl text-old_gold p-8 animate-rise'>
-              The Good We Do
-            </div>
-          }
+        <div>
+          <div 
+            ref={titleRef}  
+            id='banner_title'
+          >
+            {showTitle &&
+              <div className='good-banner-title text-6xl text-old_gold py-8 animate-rise'>
+                The Good We Do
+              </div>
+            }
+          </div>
+        </div>
+        <div>
+          <div className='text-2xl'>
+            A new project featuring the best in everyday people.
+          </div>
         </div>
       </div>
       <div>
-        <div className='text-2xl'>
-          A new project featuring the best in everyday people.
-        </div>
+        <Link 
+          href={'/the-good-we-do'}
+          className='text-mint text-2xl hover:text-dark_green'
+        >
+          see more here!
+        </Link>
       </div>
     </div>
   )

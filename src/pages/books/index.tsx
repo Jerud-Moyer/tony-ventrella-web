@@ -2,31 +2,23 @@ import SubPageLayout from '@/components/SubPageLayout'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 
+interface ImageShowStatus {
+  [k: string]: boolean
+} 
+
 function Index() {
   const imageOneRef = useRef(null)
+  const imageTwoRef = useRef(null)
+  const imageThreeRef = useRef(null)
   const [showBooks, setShowBooks] = useState<boolean>(false)
 
   useEffect(() => {
     if(window !== undefined) {
-      const picObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting) {
-            console.log('intersecting! ', entry)
-          } else {  
-            console.log('not intersecting ', entry)
-          }
-        })
-      })
-      
-      if(imageOneRef.current) {
-        picObserver.observe(imageOneRef.current)
-      }
-
       setTimeout(() => {
         setShowBooks(true)
       }, 1500)
     }
-  }, [imageOneRef])
+  }, [])
 
   return (
     <div>
@@ -42,30 +34,42 @@ function Index() {
               Previous Writings:
             </p>
             <div className="flex flex-row gap-16 flex-wrap justify-around">
-              <Image 
-                height={400}
-                width={400} 
-                src='/images/smile-in-the-mirror.jpeg'
-                alt='book cover'
+              <div
                 ref={imageOneRef}
-                className={`animate-pop`}
-              />
-              <Image 
-                height={400}
-                width={400} 
-                src='/images/smile-in-the-mirror-3rd.jpeg'
-                alt='book cover'
-                ref={imageOneRef}
-                className={`animate-pop`}
-              />
-              <Image 
-                height={400}
-                width={400} 
-                src='/images/heres-smiling-at-you.jpeg'
-                alt='book cover'
-                ref={imageOneRef}
-                className={`animate-pop`}
-              />
+                id="imageOne"
+              >
+                  <Image 
+                    height={400}
+                    width={400} 
+                    src='/images/smile-in-the-mirror.jpeg'
+                    alt='book cover'
+                    className="animate-pop"
+                  />
+              </div>
+              <div
+                ref={imageTwoRef}
+                id="imageTwo"
+              >
+                <Image 
+                  height={400}
+                  width={400} 
+                  src='/images/smile-in-the-mirror-3rd.jpeg'
+                  alt='book cover'
+                  className="animate-pop"
+                />
+              </div>
+              <div
+                ref={imageThreeRef}
+                id="imageThree"
+              >
+                <Image 
+                  height={400}
+                  width={400} 
+                  src='/images/heres-smiling-at-you.jpeg'
+                  alt='book cover'
+                  className="animate-pop"
+                />
+              </div>
             </div>
           </>
         }
