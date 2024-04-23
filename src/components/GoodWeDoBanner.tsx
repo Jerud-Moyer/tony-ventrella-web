@@ -43,7 +43,7 @@ function GoodWeDoBanner() {
           </div>
         </div>
         <div>
-          <div className='text-2xl'>
+          <div className='text-2xl text-soft_white'>
             A new project featuring the best in everyday people.
           </div>
         </div>
