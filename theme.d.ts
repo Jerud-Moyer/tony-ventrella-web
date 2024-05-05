@@ -40,6 +40,7 @@ declare module '@mui/material/Button' {
   interface  ButtonPropsColorOverrides {
     dark_green: true;
     eerie_black: true;
+    soft_white: true;
   }
 }
 declare module '@mui/material/Switch' {

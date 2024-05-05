@@ -8,6 +8,7 @@ import SlideShow from '@/components/SlideShow'
 import careerImages from '../../data/career-images'
 import PodcastBanner from '@/components/PodcastBanner'
 import GoodWeDoBanner from '@/components/GoodWeDoBanner'
+import FeatureSplash from '@/components/FeatureSplash'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +19,8 @@ export default function Home() {
     >
       <Toolbar />
       <Hero />
-      <div className='pt-72'>
+      <FeatureSplash />
+      <div className='pt-24'>
         <div className='flex justify-around'>
           <div className='pt-12'>
             <Image
