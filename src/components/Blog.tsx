@@ -80,7 +80,6 @@ function Blog({
   useEffect(() => {
     getCountPublished(blogId)
       .then(count => setPageCount(Math.ceil(count.count / 10)))
-    console.log('we firing this? => ', blogId)
     handleGetColumns(1)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blogId])
