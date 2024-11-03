@@ -34,7 +34,7 @@ function Toolbar() {
           speaking
         </Button>
       </Link>
-      <Link 
+      {/* <Link 
         className='mx-2 mt-1 cursor-pointer'
         href='/remembering-tony'
       >
@@ -49,7 +49,7 @@ function Toolbar() {
         >
           remembering Tony
         </Button>
-      </Link>
+      </Link> */}
       <Link 
         className='mx-2 mt-1 cursor-pointer'
         href='/the-good-we-do'
