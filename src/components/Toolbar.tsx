@@ -36,6 +36,22 @@ function Toolbar() {
       </Link>
       <Link 
         className='mx-2 mt-1 cursor-pointer'
+        href='/remembering-tony'
+      >
+        <Button
+          variant="text" 
+          color={'soft_white'}
+          sx={{
+            textTransform: 'none',
+            fontSize: '20px',
+            marginBottom: '-5px'
+          }}
+        >
+          remembering Tony
+        </Button>
+      </Link>
+      <Link 
+        className='mx-2 mt-1 cursor-pointer'
         href='/the-good-we-do'
       >
         <Button

@@ -26,7 +26,9 @@ function Notification({severity, message}: Props) {
   }
 
   useEffect(() => {
-    setShow(true)
+    if(message.length) {
+      setShow(true)
+    }
   }, [message])
 
 
@@ -34,7 +36,7 @@ function Notification({severity, message}: Props) {
     <div>
       <Snackbar
         open={show}
-        autoHideDuration={5000}
+        autoHideDuration={7000}
         onClose={handleClose}
         TransitionComponent={slide}
       >

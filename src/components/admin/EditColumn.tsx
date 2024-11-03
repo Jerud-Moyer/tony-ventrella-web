@@ -129,13 +129,13 @@ function EditColumn({
                     <Button 
                       variant='contained' 
                       sx={{'marginRight': '20px'}}
-                      onClick={() => handleInitEdit(col.id)}  
+                      onClick={() => handleInitEdit(col.id || null)}  
                     >
                       edit
                     </Button>
                     <Button 
                       variant='contained'
-                      onClick={() => handleOpenDeleteConfirm(col.id)}  
+                      onClick={() => handleOpenDeleteConfirm(col.id || null)}  
                     >
                       delete
                     </Button>

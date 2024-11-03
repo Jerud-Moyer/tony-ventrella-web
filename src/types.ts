@@ -1,5 +1,5 @@
 export type Column = {
-  id: number | null,
+  id?: number | null,
   title: string | null,
   created_at: Date | string,
   content: string,
