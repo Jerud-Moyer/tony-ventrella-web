@@ -7,7 +7,7 @@ function Index() {
   return (
     <div>
       <Blog 
-        blogId={3}
+        blogId={34}
         typeoutMessage='Remembering Tony'
         forRemembrance={true}
       />
