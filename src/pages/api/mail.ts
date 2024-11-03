@@ -37,7 +37,7 @@ const sendMail = (reqBody: Data) => {
   const content = `name: ${name} \nemail: ${email} \n\nmessage: ${message}`
 
   const transporter = nodemailer.createTransport({
-    service: 'outlook',
+    service: 'gmail',
     host: mailHost,
     port: mailPort,
     secure: false,

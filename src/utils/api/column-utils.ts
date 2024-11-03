@@ -65,3 +65,20 @@ export const getBlogs = async() => {
   const json = await res.json()
   return json
 }
+
+export const notifyAdmin = async() => {
+  const res = await fetch('/api/mail', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: 'Web User',
+      email: 'noreply@tonyventrella.com',
+      subject: 'memory',
+      message: "A new memory has been submitted"
+    })
+  })
+
+  return await res.json()
+}
