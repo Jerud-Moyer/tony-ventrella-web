@@ -40,7 +40,7 @@ function Blog({
     content: content,
     created_at: new Date().toISOString(),
     published: false,
-    blog_id: 3
+    blog_id: 34
   }
 
   const handleGetColumns = (page: number): void => {
