@@ -4,7 +4,7 @@ import React, { forwardRef, useEffect, useState } from 'react'
 
 interface Props {
   severity: 'success' | 'warning';
-  message: string;
+  message: string | null;
 }
 
 function Notification({severity, message}: Props) {
@@ -26,7 +26,7 @@ function Notification({severity, message}: Props) {
   }
 
   useEffect(() => {
-    if(message.length) {
+    if(message && message.length) {
       setShow(true)
     }
   }, [message])
