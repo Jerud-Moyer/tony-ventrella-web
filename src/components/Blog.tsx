@@ -33,7 +33,7 @@ function Blog({
   const [headline, setHeadline] = useState<string>('')
   const [content, setContent] = useState<string>('')
   const [memFormOpen, setMemFormOpen] = useState<boolean>(false)
-  const [thankYou, setThankYou] = useState<string>('')
+  const [thankYou, setThankYou] = useState<string | null>(null)
 
   const newMemory: Column = {
     title: headline,
@@ -57,7 +57,7 @@ function Blog({
   const thanksForTheMemory = () => {
     setThankYou('Thank you! Your  memory has been submitted for review. Please check back soon to see it published!')
     setTimeout(() => {
-      setThankYou('')
+      setThankYou(null)
     }, 5000)
   }
 
