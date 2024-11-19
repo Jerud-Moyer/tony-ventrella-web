@@ -21,8 +21,8 @@ export default function Home() {
       <Hero />
       <FeatureSplash />
       <div className='pt-24'>
-        <div className='flex justify-around'>
-          <div className='pt-12'>
+        <div className='flex flex-col lg:flex-row  items-center justify-center lg:justify-around'>
+          <div className='flex items-center justify-center pt-12'>
             <Image
               alt='main image'
               src='/images/Head shot 2023.JPG'
@@ -30,7 +30,7 @@ export default function Home() {
               height='600'
             />
           </div>
-          <div className='flex flex-col max-w-[36%]'>
+          <div className='flex flex-col items-center justify-center max-w-[50%] md:max-w-[90%] lg:max-w-[36%]'>
             <div className='pt-12'>
               <p className='text-3xl text-eerie_black italic inline'>&quot;Tony is a talented speaker</p>
               <p className='text-eerie_black text-2xl inline'>&nbsp; with the amazing ability to make his listeners feel engaged and involved.  He exudes an atmosphere of trust and caring.</p>
@@ -53,10 +53,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className='mt-52'>
+        <div className='invisible md:visible mt-52'>
           <GoodWeDoBanner />
         </div>
-        <div className='flex justify-around'>
+        <div className='invisible md:visible flex justify-around'>
           <div className='w-fit block mx-auto mt-40'>
             <SlideShow
               slideContent={careerImages}

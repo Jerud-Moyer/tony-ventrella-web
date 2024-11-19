@@ -62,7 +62,7 @@ export default function Hero() {
         text='Tony Ventrella'
       />
       {showQuote ?
-        <div className='flex justify-center mt-4'>
+        <div className='invisible lg:visible flex justify-center mt-4'>
           {quoteEls[quoteIndex]}
         </div>
       : null
