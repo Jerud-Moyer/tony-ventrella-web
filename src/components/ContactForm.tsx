@@ -147,7 +147,7 @@ function ContactForm() {
       <p className='ml-6 mb-6 text-4xl text-eerie_black italic'>
         Contact
       </p>
-      <div className='flex flex-row justify-around'>
+      <div className='flex flex-col md:flex-row justify-around'>
         <div className='mx-12'>
           <div className='m-6'>
             <TextField

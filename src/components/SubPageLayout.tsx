@@ -18,7 +18,7 @@ function SubPageLayout({ typeoutMessage, children }: Props) {
           text={typeoutMessage}
         />
       </div>
-      <div className='mt-36 p-40 min-h-[64vh]'>
+      <div className='mt-36 py-10 px-6 lg:p-40 min-h-[64vh]'>
         { children }
       </div>
       <Footer />
