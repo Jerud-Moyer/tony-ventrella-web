@@ -4,10 +4,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const apiUrl = process.env.EXTERNAL_API_URL as string
+  const apiUrl = process.env.AUTH_API_URL as string
   const session = req.cookies.session
 
-  const response = await fetch(`${apiUrl}/user/verify`, {
+  const response = await fetch(`${apiUrl}/verify`, {
     credentials: 'include',
     headers: {
       'Authorization': `Bearer ${session}`
