@@ -8,9 +8,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const user = req.body
-  const apiUrl = process.env.EXTERNAL_API_URL as string
+  const apiUrl = process.env.AUTH_API_URL as string
   console.log('user here? ', user)
-  post(`${apiUrl}/user/login`, user)
+  post(`${apiUrl}/login`, user)
     .then(user => {
       if(user.token) {
         res.setHeader('Set-Cookie', cookie.serialize('session', user.token))
